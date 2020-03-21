@@ -9,7 +9,7 @@ import './form-input.style.scss'
 
 const FormInput = ({
                        label, placeholder, id, defaultValue, isAdditional,
-                       phoneValidate, deleteAddress, isTouched, error, ...otherPops
+                       phoneValidate, deleteAddress, isTouched, ...otherPops
                    }) => {
     return (
         <div className='group'>

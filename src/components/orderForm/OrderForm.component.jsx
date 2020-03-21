@@ -40,7 +40,6 @@ const OrderForm = ({
                         placeholder={'Введите номер телефона'}
                         defaultValue={'+375'}
                         onChange={event => setPhone(event.target.value)}
-                        isValid={phoneValidate}
                         isTouched={touchedPhone}
                         required
                     />
@@ -51,9 +50,7 @@ const OrderForm = ({
                         defaultValue={'+375'}
                         onBlur={() => setTouchPhone()}
                         onChange={event => setPhone(event.target.value)}
-                        isValid={phoneValidate}
                         isTouched={touchedPhone}
-                        error
                         required
                     />
             }
