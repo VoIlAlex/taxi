@@ -1,6 +1,15 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {store} from "../../redux/store";
+import {createStructuredSelector} from "reselect";
+
+import {
+    selectAdditionalAddresses,
+    selectFromAddress,
+    selectToAddress,
+    selectTouchedPhone,
+    selectPhoneValidate
+} from '../../redux/order/order.selectors'
 
 import CustomButton from '../custom-button/CustomButton.component'
 import FormInput from "../form-input/FormInput.component";
@@ -100,12 +109,12 @@ const OrderForm = ({
     )
 }
 
-const mapStateToProps = ({order}) => ({
-    additionalAddresses: order.additionalAddresses,
-    fromAddress: order.fromAddress,
-    toAddress: order.toAddress,
-    phoneValidate: order.phoneValidate,
-    touchedPhone: order.touchedPhone
+const mapStateToProps = createStructuredSelector({
+    additionalAddresses: selectAdditionalAddresses,
+    fromAddress: selectFromAddress,
+    toAddress: selectToAddress,
+    phoneValidate: selectPhoneValidate,
+    touchedPhone: selectTouchedPhone
 })
 
 const mapDispatchToProps = dispatch => ({

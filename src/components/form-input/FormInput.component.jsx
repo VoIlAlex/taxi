@@ -1,7 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {createStructuredSelector} from "reselect";
 
 import {deleteAddress} from "../../redux/order/order.actions";
+
+import {selectPhoneValidate} from '../../redux/order/order.selectors'
 
 import {ReactComponent as Bucket} from '../../asserts/Vector.svg'
 
@@ -51,8 +54,8 @@ const FormInput = ({
     )
 }
 
-const mapStateToProps = ({order}) => ({
-    phoneValidate: order.phoneValidate
+const mapStateToProps = createStructuredSelector({
+    phoneValidate: selectPhoneValidate
 })
 
 const mapDispatchToProps = dispatch => ({
