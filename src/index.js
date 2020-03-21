@@ -1,14 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import {Provider} from 'react-redux'
 import * as serviceWorker from './serviceWorker';
 
+import MainForm from "./page/MainForm.component";
+
+import {store} from "./redux/store";
+
+import './index.css'
+
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <Provider store={store}>
+        <div className={'main-page'}>
+            <MainForm/>
+        </div>
+    </Provider>
+    ,
+    document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

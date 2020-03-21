@@ -1,0 +1,60 @@
+.form {
+  width: 485px;
+  min-height: 355px;
+  margin: 70px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  .additionalAddresses{
+    width: 525px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 15px;
+
+
+    @media screen and (max-width: 600px) {
+      width: 400px;
+      margin-left: 5px;
+    }
+
+    & .group{
+       width: 110%;
+       margin-top: 10px;
+
+      @media screen and (max-width: 600px) {
+        width: 363px;
+      }
+     }
+  }
+
+  .add-order {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+
+
+    @media screen and (max-width: 600px) {
+      justify-content: flex-start;
+      margin-top: 10px;
+    }
+  }
+
+  span {
+    font-size: 14px;
+    line-height: 16px;
+    color: #0085FF;
+    cursor: pointer;
+    margin: 13px 145px 0 0;
+
+    @media screen and (max-width: 600px) {
+      margin-left: 55px;
+    }
+
+    &:hover {
+      color: #000;
+    }
+  }
+}

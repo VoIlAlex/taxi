@@ -1,0 +1,80 @@
+.group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 39px;
+  position: relative;
+  height: 45px;
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    align-items: flex-start;
+    height: 65px;
+    width: auto;
+  }
+
+  .bucket {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  input {
+    outline: none;
+    width: 295px;
+    height: 43px;
+    border: 1px solid #000000;
+    border-radius: 7px;
+    padding: 0 20px;
+    font-size: 18px;
+    line-height: 21px;
+    margin-right: 10px;
+
+    @media screen and (max-width: 600px) {
+      margin: 10px 0;
+      width: 280px;
+    }
+
+    &:focus {
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  label {
+    font-size: 18px;
+    line-height: 21px;
+    font-weight: normal;
+  }
+
+  .touched {
+    border: 1px solid #C00000;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+  }
+
+  .bucket-logo {
+    cursor: pointer;
+
+    @media screen and (max-width: 600px) {
+      padding-left: 10px;
+    }
+  }
+
+  .error{
+    width: 164px;
+    font-size: 12px;
+    line-height: 14px;
+    position: absolute;
+    top: 37px;
+    right: 10px;
+    color: #C00000;
+
+    @media screen and (max-width: 600px) {
+      top: 70px;
+    }
+  }
+}
