@@ -71,9 +71,7 @@ export const setAdditionalAddress = (value, id) => {
     }
 }
 
-export const deleteAddress = id => {
-    return {
+export const deleteAddress = id => ({
         type: DELETE_ADDRESS,
         payload: id
-    }
-}
+})
