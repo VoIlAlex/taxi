@@ -7,7 +7,7 @@
   justify-content: flex-start;
   align-items: center;
 
-  .additionalAddresses{
+  .additionalAddresses {
     width: 525px;
     display: flex;
     flex-direction: column;
@@ -20,14 +20,14 @@
       margin-left: 5px;
     }
 
-    & .group{
-       width: 110%;
-       margin-top: 10px;
+    & .group {
+      width: 110%;
+      margin-top: 10px;
 
       @media screen and (max-width: 600px) {
         width: 363px;
       }
-     }
+    }
   }
 
   .add-order {

@@ -72,9 +72,14 @@
     top: 37px;
     right: 10px;
     color: #C00000;
+    cursor: auto;
 
     @media screen and (max-width: 600px) {
       top: 70px;
+    }
+
+    &:hover{
+      color:#C00000;
     }
   }
 }

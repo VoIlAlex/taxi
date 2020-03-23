@@ -32,6 +32,7 @@ const OrderForm = ({
                        phoneValidate, setPhone, touchedPhone, setTouchPhone, setAdditionalAddress, setShowSuccess
                    }) => {
 
+
     const handleSubmit = event => {
         event.preventDefault()
         if(phoneValidate){
@@ -68,7 +69,6 @@ const OrderForm = ({
                 placeholder={'Введите адрес полностью'}
                 defaultValue={fromAddress}
                 onBlur={event => setFromAddress(event.target.value)}
-                isValid={true}
                 required
             />
             <FormInput
@@ -76,7 +76,6 @@ const OrderForm = ({
                 placeholder={'Введите адрес полностью'}
                 defaultValue={toAddress}
                 onBlur={event => setToAddress(event.target.value)}
-                isValid={true}
                 required
             />
             <div className="additionalAddresses">
@@ -91,7 +90,6 @@ const OrderForm = ({
                                     defaultValue={address.address}
                                     onBlur={({target}) => setAdditionalAddress(target.value, target.id)}
                                     label={' '}
-                                    isValid={true}
                                     isAdditional
                                 />
                             )
