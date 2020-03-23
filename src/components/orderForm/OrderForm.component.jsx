@@ -99,7 +99,12 @@ const OrderForm = ({
                 }
             </div>
             <div className='add-order'>
-                <span onClick={() => addEmptyInput()}>Добавить</span>
+                <span
+                    className='add-address'
+                    onClick={() => addEmptyInput()}
+                >
+                    Добавить
+                </span>
             </div>
 
             <CustomButton type='submit'>Создать заказ</CustomButton>
