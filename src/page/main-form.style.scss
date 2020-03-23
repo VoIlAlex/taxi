@@ -8,4 +8,10 @@
   background: #fff;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
+
+  @media screen and (max-width: 600px) {
+    width: 400px;
+    min-height: 418px;
+    overflow-y: hidden;
+  }
 }

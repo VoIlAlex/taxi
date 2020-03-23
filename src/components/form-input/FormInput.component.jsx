@@ -36,7 +36,7 @@ const FormInput = ({
                 />
                 {
                     isTouched?
-                        <span className={'error'}>Введите корректные данные</span>
+                        <p className={'error'}>Введите корректные данные</p>
                         :
                         ''
                 }

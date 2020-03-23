@@ -8,10 +8,10 @@
   height: 45px;
 
   @media screen and (max-width: 600px) {
+    width: 100%;
+    margin: 0 0 50px 0;
     flex-direction: column;
     align-items: flex-start;
-    height: 65px;
-    width: auto;
   }
 
   .bucket {
@@ -32,8 +32,8 @@
     margin-right: 10px;
 
     @media screen and (max-width: 600px) {
-      margin: 10px 0;
-      width: 280px;
+      width: 255px;
+      margin: 0;
     }
 
     &:focus {
@@ -49,7 +49,12 @@
     font-size: 18px;
     line-height: 21px;
     font-weight: normal;
+
+    @media screen and (max-width: 600px) {
+      margin: 0 0 10px 10px;
+    }
   }
+
 
   .touched {
     border: 1px solid #C00000;
@@ -60,26 +65,28 @@
     cursor: pointer;
 
     @media screen and (max-width: 600px) {
-      padding-left: 10px;
+      margin-left: 5px;
     }
   }
 
-  .error{
+  .error {
     width: 164px;
     font-size: 12px;
     line-height: 14px;
     position: absolute;
     top: 37px;
-    right: 10px;
+    right: 30%;
     color: #C00000;
     cursor: auto;
 
     @media screen and (max-width: 600px) {
-      top: 70px;
+      top: 65px;
+      left: 10px;
     }
 
-    &:hover{
-      color:#C00000;
+    &:hover {
+      color: #C00000;
     }
   }
 }
+
