@@ -20,7 +20,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
-    margin: 15px 0 0 40px;
+    margin: 0 0 0 40px;
 
     @media screen and (max-width: 600px) {
       margin: -25px 0 0 60px;
@@ -28,7 +28,7 @@
 
     & .group {
       width: 110%;
-      margin-top: 5px;
+      margin-top: 13px;
 
       @media screen and (max-width: 600px) {
         margin: 10px 0 0 0;

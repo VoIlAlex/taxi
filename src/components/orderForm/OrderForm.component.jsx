@@ -35,7 +35,7 @@ const OrderForm = ({
 
     const handleSubmit = event => {
         event.preventDefault()
-        if(phoneValidate){
+        if (phoneValidate) {
             setShowSuccess()
         }
         console.log(store.getState())
@@ -98,13 +98,20 @@ const OrderForm = ({
                         ''
                 }
             </div>
+
             <div className='add-order'>
-                <span
-                    className='add-address'
-                    onClick={() => addEmptyInput()}
-                >
+                {
+                    additionalAddresses.length === 4
+                        ?
+                        ''
+                        :
+                        <span
+                            className='add-address'
+                            onClick={() => addEmptyInput()}
+                        >
                     Добавить
                 </span>
+                }
             </div>
 
             <CustomButton type='submit'>Создать заказ</CustomButton>

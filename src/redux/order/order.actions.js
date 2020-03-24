@@ -1,5 +1,4 @@
-import actionTypes from "./order.types";
-import validator from "validator/es";
+import actionTypes from "./order.types"
 import {v4} from 'uuid'
 
 const {
@@ -16,7 +15,8 @@ const {
 
 export const setPhone = number => {
     number = number.trim()
-    if (validator.isMobilePhone(number, ['be-BY'])) {
+    const reg = /[^[a-z]\+?(\d{1,3})?(\d{6,12})/
+    if (reg.test(number)) {
         return {
             type: SET_PHONE,
             payload: {
