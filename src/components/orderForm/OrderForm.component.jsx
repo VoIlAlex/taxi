@@ -25,6 +25,7 @@ import {
 } from '../../redux/order/order.actions'
 
 import './order-form.style.scss'
+import Loader from "../loader/Loader";
 
 
 const OrderForm = ({
@@ -40,7 +41,7 @@ const OrderForm = ({
         }
         console.log(store.getState())
     }
-
+    let load = true
     return (
         <form className='form' onSubmit={handleSubmit}>
             {
@@ -113,8 +114,13 @@ const OrderForm = ({
                 </span>
                 }
             </div>
-
-            <CustomButton type='submit'>Создать заказ</CustomButton>
+            {
+                load
+                ?
+                    <Loader />
+                    :
+                    <CustomButton type='submit'>Создать заказ</CustomButton>
+            }
         </form>
     )
 }
