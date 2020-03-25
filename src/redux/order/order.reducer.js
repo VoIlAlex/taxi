@@ -6,11 +6,13 @@ const {
     SET_FROM_ADDRESS,
     SET_TO_ADDRESS,
     ADD_EMPTY_INPUT,
-    SHOW_SUCCESS,
     RESET_ORDER,
     SET_TOUCH_PHONE,
     SET_ADDITIONAL_ADDRESSES,
-    DELETE_ADDRESS
+    DELETE_ADDRESS,
+    START_ORDER_FETCH,
+    SUCCESS_ORDER_FETCH,
+    FAILURE_ORDER_FETCH
 } = actionTypes
 
 const initialState = {
@@ -20,7 +22,9 @@ const initialState = {
     fromAddress: '',
     toAddress: '',
     additionalAddresses: [],
-    showSuccess: false
+    showSuccess: false,
+    isLoading: false,
+    error: null
 }
 
 const orderReducer = (state = initialState, action) => {
@@ -52,11 +56,6 @@ const orderReducer = (state = initialState, action) => {
                 ...state,
                 additionalAddresses: addAdditional(state.additionalAddresses, action.payload)
             }
-        case SHOW_SUCCESS:
-            return {
-                ...state,
-                showSuccess: !state.showSuccess
-            }
         case RESET_ORDER:
             return {
                 phone: '',
@@ -75,6 +74,24 @@ const orderReducer = (state = initialState, action) => {
             return {
                 ...state,
                 touchedPhone: true
+            }
+        case START_ORDER_FETCH:
+            return {
+                ...state,
+                isLoading: true
+            }
+        case SUCCESS_ORDER_FETCH:
+            return {
+                ...state,
+                isLoading: false,
+                showSuccess: true,
+                ...action.payload
+            }
+        case FAILURE_ORDER_FETCH:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload
             }
         default:
             return state

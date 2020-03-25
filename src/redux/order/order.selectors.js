@@ -2,6 +2,16 @@ import {createSelector} from 'reselect'
 
 const selectOrder = state => state.order
 
+export const selectLoading = createSelector(
+    [selectOrder],
+    order => order.isLoading
+)
+
+export const selectPhoneNumber = createSelector(
+    [selectOrder],
+    order => order.phone
+)
+
 export const selectFromAddress = createSelector(
     [selectOrder],
     order => order.fromAddress

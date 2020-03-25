@@ -8,7 +8,9 @@ import {
     selectFromAddress,
     selectToAddress,
     selectTouchedPhone,
-    selectPhoneValidate
+    selectPhoneValidate,
+    selectPhoneNumber,
+    selectLoading
 } from '../../redux/order/order.selectors'
 
 import CustomButton from '../custom-button/CustomButton.component'
@@ -21,7 +23,7 @@ import {
     setPhone,
     setTouchPhone,
     setAdditionalAddress,
-    setShowSuccess
+    startOrderFetchingAsync
 } from '../../redux/order/order.actions'
 
 import './order-form.style.scss'
@@ -30,18 +32,23 @@ import Loader from "../loader/Loader";
 
 const OrderForm = ({
                        additionalAddresses, fromAddress, setFromAddress, toAddress, setToAddress, addEmptyInput,
-                       phoneValidate, setPhone, touchedPhone, setTouchPhone, setAdditionalAddress, setShowSuccess
+                       phoneValidate, setPhone, touchedPhone, setTouchPhone, setAdditionalAddress, startOrderFetchingAsync,
+                       phone, isLoading
                    }) => {
 
 
     const handleSubmit = event => {
         event.preventDefault()
         if (phoneValidate) {
-            setShowSuccess()
+            startOrderFetchingAsync({
+                phone,
+                additionalAddresses,
+                fromAddress,
+                toAddress
+            })
         }
-        console.log(store.getState())
     }
-    let load = true
+
     return (
         <form className='form' onSubmit={handleSubmit}>
             {
@@ -115,7 +122,7 @@ const OrderForm = ({
                 }
             </div>
             {
-                load
+                isLoading
                 ?
                     <Loader />
                     :
@@ -126,11 +133,13 @@ const OrderForm = ({
 }
 
 const mapStateToProps = createStructuredSelector({
+    phone: selectPhoneNumber,
     additionalAddresses: selectAdditionalAddresses,
     fromAddress: selectFromAddress,
     toAddress: selectToAddress,
     phoneValidate: selectPhoneValidate,
-    touchedPhone: selectTouchedPhone
+    touchedPhone: selectTouchedPhone,
+    isLoading: selectLoading
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -140,7 +149,8 @@ const mapDispatchToProps = dispatch => ({
     setPhone: (value) => dispatch(setPhone(value)),
     setTouchPhone: () => dispatch(setTouchPhone()),
     setAdditionalAddress: (value, id) => dispatch(setAdditionalAddress(value, id)),
-    setShowSuccess: () => dispatch(setShowSuccess())
+    startOrderFetchingAsync: (orderCredentials => dispatch(startOrderFetchingAsync(orderCredentials)))
+
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderForm)

@@ -6,11 +6,13 @@ const {
     SET_FROM_ADDRESS,
     SET_TO_ADDRESS,
     ADD_EMPTY_INPUT,
-    SHOW_SUCCESS,
     RESET_ORDER,
     SET_TOUCH_PHONE,
     SET_ADDITIONAL_ADDRESSES,
-    DELETE_ADDRESS
+    DELETE_ADDRESS,
+    START_ORDER_FETCH,
+    SUCCESS_ORDER_FETCH,
+    FAILURE_ORDER_FETCH
 } = actionTypes
 
 export const setPhone = number => {
@@ -49,10 +51,6 @@ export const addEmptyInput = () => ({
     payload: {id: v4(), address: ''}
 })
 
-export const setShowSuccess = () => ({
-    type: SHOW_SUCCESS
-})
-
 export const resetOrder = () => ({
     type: RESET_ORDER
 })
@@ -75,3 +73,28 @@ export const deleteAddress = id => ({
         type: DELETE_ADDRESS,
         payload: id
 })
+
+const startOrderFetch = () => ({
+    type: START_ORDER_FETCH
+})
+
+const failureOrderFetch = (msg) => ({
+    type: FAILURE_ORDER_FETCH,
+    payload: msg
+})
+
+const successOrderFetch = ({...orderCredentials}) => ({
+    type: SUCCESS_ORDER_FETCH,
+    payload: orderCredentials
+})
+
+export const startOrderFetchingAsync = ({...orderCredentials}) => {
+    return dispatch => {
+        dispatch(startOrderFetch())
+
+        setTimeout(()=>{
+            dispatch(successOrderFetch(orderCredentials))
+            console.log(orderCredentials)
+        },3000)
+    }
+}
