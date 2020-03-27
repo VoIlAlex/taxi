@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {connect} from 'react-redux'
 import {createStructuredSelector} from "reselect";
 
@@ -14,6 +14,7 @@ import {
 
 import CustomButton from '../custom-button/CustomButton.component'
 import FormInput from "../form-input/FormInput.component";
+import Loader from "../loader/Loader";
 
 import {
     setFromAddress,
@@ -26,7 +27,6 @@ import {
 } from '../../redux/order/order.actions'
 
 import './order-form.style.scss'
-import Loader from "../loader/Loader";
 
 
 const OrderForm = ({
@@ -35,6 +35,8 @@ const OrderForm = ({
                        phone, isLoading
                    }) => {
 
+
+    const [] = useState()
 
     const handleSubmit = event => {
         event.preventDefault()

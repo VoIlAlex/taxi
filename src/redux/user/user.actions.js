@@ -20,7 +20,7 @@ export const signInStartAsync = ({...userCredentials}) => {
 
         setTimeout(()=> {
             console.log(userCredentials)
-            dispatch(signInSuccess())
-        },10000)
+            dispatch(signInSuccess(userCredentials))
+        },5000)
     }
 }
