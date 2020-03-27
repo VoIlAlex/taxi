@@ -1,6 +1,5 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {store} from "../../redux/store";
 import {createStructuredSelector} from "reselect";
 
 import {
@@ -106,7 +105,6 @@ const OrderForm = ({
                         ''
                 }
             </div>
-
             <div className='add-order'>
                 {
                     additionalAddresses.length === 4
@@ -123,8 +121,8 @@ const OrderForm = ({
             </div>
             {
                 isLoading
-                ?
-                    <Loader />
+                    ?
+                    <Loader/>
                     :
                     <CustomButton type='submit'>Создать заказ</CustomButton>
             }

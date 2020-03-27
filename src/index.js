@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux'
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import * as serviceWorker from './serviceWorker';
 
-import MainForm from "./page/MainForm.component";
+import MainForm from "./page/main-form/MainForm.component";
+import SignInPage from "./page/sign-in-page/SignInPage.component";
 
 import {store} from "./redux/store";
 
@@ -11,11 +13,16 @@ import './index.css'
 
 
 ReactDOM.render(
-    <Provider store={store}>
-        <div className={'main-page'}>
-            <MainForm/>
-        </div>
-    </Provider>
+    <BrowserRouter>
+        <Provider store={store}>
+            <div className={'main-page'}>
+                <Switch>
+                    <Route exact path={'/'} component={MainForm} />
+                    <Route path={'/user'} component={SignInPage} />
+                </Switch>
+            </div>
+        </Provider>
+    </BrowserRouter>
     ,
     document.getElementById('root')
 );
