@@ -30,7 +30,7 @@ export const startOrderFetchingAsync = ({...orderCredentials}) => {
         dispatch(startOrderFetch())
 
         setTimeout(()=>{
-            dispatch(successOrderFetch(orderCredentials))
+            dispatch(successOrderFetch(JSON.stringify(orderCredentials)))
             console.log(orderCredentials)
         },3000)
     }

@@ -44,9 +44,8 @@ const OrderForm = ({startOrderFetchingAsync, isLoading}) => {
         if(valid) {
             startOrderFetchingAsync({
                 phone,
-                additionalAddresses,
                 fromAddress,
-                toAddress
+                toAddress:[toAddress, ...additionalAddresses.map(({address}) => address)]
             })
             return ()=> {
                 setPhone('+375')
