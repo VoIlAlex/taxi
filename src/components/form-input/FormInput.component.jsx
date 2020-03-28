@@ -17,7 +17,7 @@ const FormInput = ({
                 <input
                     id={id}
                     type="text"
-                    className={`${isInvalid ? 'touched' : ''}form-input`}
+                    className={`${isInvalid ? 'touched' : ''} form-input`}
                     defaultValue={defaultValue}
                     placeholder={placeholder}
                     {...otherPops}
