@@ -15,6 +15,7 @@ export const signInSuccess = user => ({
 })
 
 export const signInStartAsync = ({...userCredentials}) => {
+    console.log(userCredentials)
     return dispatch => {
         dispatch(signInStart())
 

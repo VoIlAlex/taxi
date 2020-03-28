@@ -1,26 +1,24 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {setShowSuccess} from '../../redux/order/order.actions'
 
 import CustomButton from "../custom-button/CustomButton.component";
-
-import {resetOrder} from '../../redux/order/order.actions'
-
 import {ReactComponent as SuccessLogo} from '../../asserts/Success.svg'
 
 import './success-order.style.scss'
 
-const SuccessOrder = ({resetOrder}) => {
+const SuccessOrder = ({setShowSuccess}) => {
     return (
         <div className="success">
-            <div className="success-logo"> <SuccessLogo/></div>
+            <div className="success-logo"><SuccessLogo/></div>
             <p>Заказ успешно создан</p>
-            <CustomButton onClick={() => resetOrder()}>Создать новый</CustomButton>
+            <CustomButton onClick={() => setShowSuccess()}>Создать новый</CustomButton>
         </div>
     )
 }
 
 const mapDispatchToProps = dispatch => ({
-    resetOrder: () => dispatch(resetOrder())
+    setShowSuccess: () => dispatch(setShowSuccess())
 })
 
 export default connect(null, mapDispatchToProps)(SuccessOrder)

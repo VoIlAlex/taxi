@@ -1,75 +1,80 @@
 import React, {useState} from 'react'
 import {connect} from 'react-redux'
-import {createStructuredSelector} from "reselect";
-
-import {
-    selectAdditionalAddresses,
-    selectFromAddress,
-    selectToAddress,
-    selectTouchedPhone,
-    selectPhoneValidate,
-    selectPhoneNumber,
-    selectLoading
-} from '../../redux/order/order.selectors'
+import {v4} from 'uuid'
+import {startOrderFetchingAsync} from '../../redux/order/order.actions'
 
 import CustomButton from '../custom-button/CustomButton.component'
 import FormInput from "../form-input/FormInput.component";
 import Loader from "../loader/Loader";
 
-import {
-    setFromAddress,
-    setToAddress,
-    addEmptyInput,
-    setPhone,
-    setTouchPhone,
-    setAdditionalAddress,
-    startOrderFetchingAsync
-} from '../../redux/order/order.actions'
-
 import './order-form.style.scss'
 
+const OrderForm = ({startOrderFetchingAsync, isLoading}) => {
 
-const OrderForm = ({
-                       additionalAddresses, fromAddress, setFromAddress, toAddress, setToAddress, addEmptyInput,
-                       phoneValidate, setPhone, touchedPhone, setTouchPhone, setAdditionalAddress, startOrderFetchingAsync,
-                       phone, isLoading
-                   }) => {
+    const [phone, setPhone] = useState('+375')
+    const [fromAddress, setFromAddress] = useState('')
+    const [toAddress, setToAddress] = useState('')
+    const [additionalAddresses, setAdditionalAddresses] = useState([])
+    const [valid, setValid] = useState(true)
 
+    const validPhone = phone => {
+        const reg = /[^[a-z]\+?(\d{1,3})?(\d{6,12})/
+        if (reg.test(phone)) {
+            setPhone(phone)
+            setValid(true)
+        }else{
+            setValid(false)
+        }
+    }
 
-    const [] = useState()
+    const addAdditionalAddress = (addressValue, id) => {
+        return setAdditionalAddresses(additionalAddresses.map(address => id === address.id ?
+            {
+                address: addressValue,
+                id: id
+            } : address
+            )
+        )
+    }
+
+    const deleteAdditional = id => setAdditionalAddresses(additionalAddresses.filter(address => id !== address.id))
 
     const handleSubmit = event => {
         event.preventDefault()
-        if (phoneValidate) {
+        if(valid) {
             startOrderFetchingAsync({
                 phone,
                 additionalAddresses,
                 fromAddress,
                 toAddress
             })
+            return ()=> {
+                setPhone('+375')
+                setAdditionalAddresses([])
+                setFromAddress('')
+                setToAddress('')
+                setValid(true)
+            }
         }
     }
 
     return (
         <form className='form' onSubmit={handleSubmit}>
             {
-                phoneValidate ?
+                valid?
                     <FormInput
                         label={'Телефон'}
                         placeholder={'Введите номер телефона'}
                         defaultValue={'+375'}
-                        onChange={event => setPhone(event.target.value)}
-                        isTouched={touchedPhone}
+                        onChange={event => validPhone(event.target.value)}
                         required
-                    />
-                    :
+                    /> :
                     <FormInput
                         label={'Телефон'}
                         placeholder={'Введите номер телефона'}
                         defaultValue={'+375'}
-                        onBlur={() => setTouchPhone()}
-                        onChange={event => setPhone(event.target.value)}
-                        isTouched={touchedPhone}
+                        onChange={event => validPhone(event.target.value)}
+                        isInvalid
                         required
                     />
             }
@@ -90,67 +95,44 @@ const OrderForm = ({
             <div className="additionalAddresses">
                 {
                     additionalAddresses.length ?
-                        additionalAddresses.map(address => {
-                            return (
-                                <FormInput
-                                    key={Math.random()}
-                                    id={address.id}
-                                    placeholder={'Введите адрес полностью'}
-                                    defaultValue={address.address}
-                                    onBlur={({target}) => setAdditionalAddress(target.value, target.id)}
-                                    label={' '}
-                                    isAdditional
-                                />
-                            )
-                        })
-                        :
-                        ''
+                        additionalAddresses.map(({address, id}) =>
+                            <FormInput
+                                key={Math.random()}
+                                id={id}
+                                placeholder={'Введите адрес полностью'}
+                                defaultValue={address}
+                                handleDelete={deleteAdditional}
+                                onBlur={({target}) => addAdditionalAddress(target.value, target.id)}
+                                label={' '}
+                                isAdditional
+                            />
+                        ) : ''
                 }
             </div>
             <div className='add-order'>
                 {
-                    additionalAddresses.length === 4
-                        ?
-                        ''
-                        :
+                    additionalAddresses.length === 4 ? '' :
                         <span
                             className='add-address'
-                            onClick={() => addEmptyInput()}
+                            onClick={() => setAdditionalAddresses([...additionalAddresses, {id: v4()}])}
                         >
                     Добавить
                 </span>
                 }
             </div>
             {
-                isLoading
-                    ?
-                    <Loader/>
-                    :
-                    <CustomButton type='submit'>Создать заказ</CustomButton>
+                isLoading ? <Loader/> : <CustomButton type='submit'>Создать заказ</CustomButton>
             }
         </form>
     )
 }
 
-const mapStateToProps = createStructuredSelector({
-    phone: selectPhoneNumber,
-    additionalAddresses: selectAdditionalAddresses,
-    fromAddress: selectFromAddress,
-    toAddress: selectToAddress,
-    phoneValidate: selectPhoneValidate,
-    touchedPhone: selectTouchedPhone,
-    isLoading: selectLoading
+const mapStateToProps = ({order}) => ({
+    isLoading: order.isLoading
 })
 
 const mapDispatchToProps = dispatch => ({
-    setFromAddress: (value) => dispatch(setFromAddress(value)),
-    setToAddress: (value) => dispatch(setToAddress(value)),
-    addEmptyInput: () => dispatch(addEmptyInput()),
-    setPhone: (value) => dispatch(setPhone(value)),
-    setTouchPhone: () => dispatch(setTouchPhone()),
-    setAdditionalAddress: (value, id) => dispatch(setAdditionalAddress(value, id)),
-    startOrderFetchingAsync: (orderCredentials => dispatch(startOrderFetchingAsync(orderCredentials)))
-
+    startOrderFetchingAsync: orderCredentials => dispatch(startOrderFetchingAsync(orderCredentials))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderForm)
