@@ -1,3 +1,4 @@
+import axios from 'axios'
 import actionTypes from "./order.types"
 
 const {
@@ -25,13 +26,12 @@ const successOrderFetch = ({...orderCredentials}) => ({
     payload: orderCredentials
 })
 
-export const startOrderFetchingAsync = ({...orderCredentials}) => {
-    return dispatch => {
+export const startOrderFetchingAsync = (orderCredentials) => {
+    return async dispatch => {
         dispatch(startOrderFetch())
-
-        setTimeout(()=>{
-            dispatch(successOrderFetch(JSON.stringify(orderCredentials)))
-            console.log(orderCredentials)
-        },3000)
+        await axios.post('/api/sendForm/', {orderCredentials})
+            .then(res => dispatch(successOrderFetch(orderCredentials)))
+            // TODO JWToken
+            .catch(err => dispatch(failureOrderFetch(err.message)))
     }
 }

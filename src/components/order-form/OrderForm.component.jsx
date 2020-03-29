@@ -73,6 +73,7 @@ const OrderForm = ({startOrderFetchingAsync, isLoading}) => {
                         placeholder={'Введите номер телефона'}
                         defaultValue={'+375'}
                         onChange={event => validPhone(event.target.value)}
+                        errorMsg={'Введите корректные данные'}
                         isInvalid
                         required
                     />

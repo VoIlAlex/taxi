@@ -9,7 +9,7 @@ import {signInStartAsync} from '../../redux/user/user.actions'
 
 import './sign-in-form.style.scss'
 
-const SignInForm = ({isLoading, signInStartAsync}) => {
+const SignInForm = ({isLoading, error, signInStartAsync}) => {
 
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
@@ -27,7 +27,6 @@ const SignInForm = ({isLoading, signInStartAsync}) => {
             <FormInput
                 label={'Логин'}
                 placeholder={'Введите логин'}
-                name={'login'}
                 onChange={({target}) => setLogin(target.value)}
                 required
             />
@@ -35,8 +34,9 @@ const SignInForm = ({isLoading, signInStartAsync}) => {
                 label={'Пароль'}
                 placeholder={'Введите пароль'}
                 type={'password'}
-                name={'password'}
                 onChange={({target}) => setPassword(target.value)}
+                isInvalid={error}
+                errorMsg={'Неверный логин или пароль'}
                 required
             />
             {
@@ -51,7 +51,8 @@ const SignInForm = ({isLoading, signInStartAsync}) => {
 }
 
 const mapStateToProps = state => ({
-    isLoading: state.user.isLoading
+    isLoading: state.user.isLoading,
+    error: state.user.error
 })
 
 const mapDispatchToProps = dispatch => ({

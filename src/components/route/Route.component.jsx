@@ -11,7 +11,7 @@ const Routes = ({currentUser}) => {
         ?
             <Route path={'/'} component={MainForm} />
             :
-            <Route path={'/user'} component={SignInPage} />
+            <Route path={'/'} component={SignInPage} />
     )
 }
 

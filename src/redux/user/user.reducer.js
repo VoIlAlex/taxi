@@ -1,8 +1,10 @@
 import actionTypes from "./user.types";
 
 const initialState = {
-    currentUser: null,
-    isLoading: false
+    // TODO delete current user
+    currentUser: 'gleb',
+    isLoading: false,
+    error: null
 }
 
 const userReducer = (state = initialState, action) => {
@@ -23,7 +25,7 @@ const userReducer = (state = initialState, action) => {
         case actionTypes.SIGN_IN_FAILURE:
             return {
                 ...state,
-                isLoading: true,
+                isLoading: false,
                 error: action.payload
             }
         default:

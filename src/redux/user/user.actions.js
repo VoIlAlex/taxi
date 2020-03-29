@@ -1,3 +1,4 @@
+import axios from 'axios'
 import actionTypes from "./user.types";
 
 export const signInStart = () => ({
@@ -14,14 +15,12 @@ export const signInSuccess = user => ({
     payload: user
 })
 
-export const signInStartAsync = ({...userCredentials}) => {
-    console.log(userCredentials)
-    return dispatch => {
+export const signInStartAsync = (userCredentials) => {
+    return async dispatch => {
         dispatch(signInStart())
-
-        setTimeout(()=> {
-            console.log(userCredentials)
-            dispatch(signInSuccess(userCredentials))
-        },5000)
+        await axios.post('/api/login/', userCredentials)
+            .then(res => dispatch(signInSuccess(userCredentials)))
+            // TODO JWToken
+            .catch(err => dispatch(signInFailure(err.message)))
     }
 }

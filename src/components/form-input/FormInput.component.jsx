@@ -6,7 +6,7 @@ import './form-input.style.scss'
 
 const FormInput = ({
                        label, placeholder, id, defaultValue, isAdditional,
-                       isInvalid, handleDelete, ...otherPops
+                       isInvalid, handleDelete, errorMsg,...otherPops
                    }) => {
     return (
         <div className='group'>
@@ -23,7 +23,7 @@ const FormInput = ({
                     {...otherPops}
                 />
                 {
-                    isInvalid ? <p className={'error'}>Введите корректные данные</p> : ''
+                    isInvalid ? <p className={'error'}>{errorMsg}</p> : ''
                 }
                 {
                     isAdditional ?
