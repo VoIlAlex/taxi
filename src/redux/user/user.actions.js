@@ -24,7 +24,6 @@ export const signInStartAsync = (userCredentials) => {
             withCredentials: true
         })
             .then(res => dispatch(signInSuccess({...userCredentials, token: res.headers['authorization']})))
-            // TODO JWToken
             .catch(err => dispatch(signInFailure(err.message)))
     }
 }

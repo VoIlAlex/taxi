@@ -1,7 +1,6 @@
 import actionTypes from "./user.types";
 
 const initialState = {
-    // TODO delete current user
     currentUser: null,
     isLoading: false,
     error: null

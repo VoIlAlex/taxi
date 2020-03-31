@@ -36,7 +36,6 @@ export const startOrderFetchingAsync = (orderCredentials, token) => {
             headers: { Authorization: token}
         })
             .then(res => dispatch(successOrderFetch(orderCredentials)))
-            // TODO JWToken
             .catch(err => dispatch(failureOrderFetch(err.message)))
     }
 }
