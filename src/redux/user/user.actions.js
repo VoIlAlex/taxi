@@ -18,8 +18,12 @@ export const signInSuccess = user => ({
 export const signInStartAsync = (userCredentials) => {
     return async dispatch => {
         dispatch(signInStart())
-        await axios.post('https://kandk.team/api/login', userCredentials)
-            .then(res => dispatch(signInSuccess(userCredentials)))
+        await axios('https://kandk.team/api/login/', {
+            data: userCredentials,
+            method: "post",
+            withCredentials: true
+        })
+            .then(res => dispatch(signInSuccess({...userCredentials, token: res.headers['authorization']})))
             // TODO JWToken
             .catch(err => dispatch(signInFailure(err.message)))
     }

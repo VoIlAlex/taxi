@@ -9,7 +9,7 @@ import Loader from "../loader/Loader";
 
 import './order-form.style.scss'
 
-const OrderForm = ({startOrderFetchingAsync, isLoading}) => {
+const OrderForm = ({startOrderFetchingAsync, isLoading, token}) => {
 
     const [phone, setPhone] = useState('+375')
     const [fromAddress, setFromAddress] = useState('')
@@ -44,9 +44,9 @@ const OrderForm = ({startOrderFetchingAsync, isLoading}) => {
         if(valid) {
             startOrderFetchingAsync({
                 phone,
-                fromAddress,
-                toAddress:[toAddress, ...additionalAddresses.map(({address}) => address)]
-            })
+                from_address: fromAddress,
+                to_addresses:[toAddress, ...additionalAddresses.map(({address}) => address)]
+            }, token)
             return ()=> {
                 setPhone('+375')
                 setAdditionalAddresses([])
@@ -127,12 +127,13 @@ const OrderForm = ({startOrderFetchingAsync, isLoading}) => {
     )
 }
 
-const mapStateToProps = ({order}) => ({
-    isLoading: order.isLoading
+const mapStateToProps = (state) => ({
+    isLoading: state.order.isLoading,
+    token: state.user.currentUser.token
 })
 
 const mapDispatchToProps = dispatch => ({
-    startOrderFetchingAsync: orderCredentials => dispatch(startOrderFetchingAsync(orderCredentials))
+    startOrderFetchingAsync: (orderCredentials, token) => dispatch(startOrderFetchingAsync(orderCredentials, token))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderForm)
