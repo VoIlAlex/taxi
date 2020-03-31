@@ -29,8 +29,9 @@ const successOrderFetch = ({...orderCredentials}) => ({
 export const startOrderFetchingAsync = (orderCredentials) => {
     return async dispatch => {
         dispatch(startOrderFetch())
-        await axios.post('/api/sendForm/', {orderCredentials})
+        await axios.post('https://kandk.team/api/sendForm', {orderCredentials})
             .then(res => dispatch(successOrderFetch(orderCredentials)))
+            .then(res => console.log(JSON.parse(res)))
             // TODO JWToken
             .catch(err => dispatch(failureOrderFetch(err.message)))
     }

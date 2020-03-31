@@ -2,7 +2,7 @@ import actionTypes from "./user.types";
 
 const initialState = {
     // TODO delete current user
-    currentUser: 'gleb',
+    currentUser: null,
     isLoading: false,
     error: null
 }
