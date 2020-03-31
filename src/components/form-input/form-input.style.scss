@@ -7,11 +7,6 @@
   position: relative;
   height: 45px;
 
-  &:first-child {
-    .bucket-logo {
-      display: none;
-    }
-  }
 
   @media screen and (max-width: 600px) {
     width: 100%;
