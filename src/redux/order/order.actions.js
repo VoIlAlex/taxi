@@ -48,6 +48,6 @@ export const startOrderFetchingAsync = (orderCredentials, token) => {
         setTimeout(()=> {
             console.log({...orderCredentials, id: v4(), date: new Date()})
             dispatch(successOrderFetch({...orderCredentials, id: v4(), date: new Date()}))
-        }, 2000)
+        }, 10000)
     }
 }

@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 
 import FormInput from "../form-input/FormInput.component";
 import CustomButton from "../custom-button/CustomButton.component";
-import Loader from '../loader/Loader'
+import LottieLoader from "../lottie-loader/LootieLoader.component";
 
 import {signInStartAsync} from '../../redux/user/user.actions'
 
@@ -42,7 +42,7 @@ const SignInForm = ({isLoading, error, signInStartAsync}) => {
             {
                 isLoading
                     ?
-                    <Loader/>
+                    <LottieLoader/>
                     :
                     <CustomButton type={'submit'}>Войти</CustomButton>
             }

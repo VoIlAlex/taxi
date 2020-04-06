@@ -1,11 +1,12 @@
 import React, {useState} from 'react'
 import {connect} from 'react-redux'
+
 import {v4} from 'uuid'
 import {startOrderFetchingAsync} from '../../redux/order/order.actions'
 
 import CustomButton from '../custom-button/CustomButton.component'
 import FormInput from "../form-input/FormInput.component";
-import Loader from "../loader/Loader";
+import LottieLoader from "../lottie-loader/LootieLoader.component";
 
 import './order-form.style.scss'
 
@@ -122,7 +123,7 @@ const OrderForm = ({startOrderFetchingAsync, isLoading, token}) => {
                 }
             </div>
             {
-                isLoading ? <Loader/> : <CustomButton type='submit'>Создать заказ</CustomButton>
+                isLoading ? <LottieLoader/> : <CustomButton type='submit'>Создать заказ</CustomButton>
             }
         </form>
     )
