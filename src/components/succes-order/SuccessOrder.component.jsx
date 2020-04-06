@@ -9,11 +9,13 @@ import './success-order.style.scss'
 
 const SuccessOrder = ({setShowSuccess}) => {
     return (
-        <div className="success">
-            <div className="success-logo"><SuccessLogo/></div>
-            <p>Заказ успешно создан</p>
-            <CustomButton onClick={() => setShowSuccess()}>Создать новый</CustomButton>
-        </div>
+        <>
+            <div className="success">
+                <div className="success-logo"><SuccessLogo/></div>
+                <p>Заказ успешно создан</p>
+                <CustomButton onClick={() => setShowSuccess()}>Создать новый</CustomButton>
+            </div>
+        </>
     )
 }
 

@@ -17,6 +17,7 @@ const OrderForm = ({startOrderFetchingAsync, isLoading, token}) => {
     const [additionalAddresses, setAdditionalAddresses] = useState([])
     const [valid, setValid] = useState(true)
 
+//TODO не давать создавать заказ с пустым номером
     const validPhone = phone => {
         const reg = /[^[a-z]\+?(\d{1,3})?(\d{6,12})/
         if (reg.test(phone)) {
@@ -45,7 +46,7 @@ const OrderForm = ({startOrderFetchingAsync, isLoading, token}) => {
             startOrderFetchingAsync({
                 phone,
                 from_address: fromAddress,
-                to_addresses:[toAddress, ...additionalAddresses.map(({address}) => address)]
+                to_addresses: [toAddress, ...additionalAddresses.map(({address}) => address)]
             }, token)
             return ()=> {
                 setPhone('+375')
