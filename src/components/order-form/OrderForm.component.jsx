@@ -16,16 +16,17 @@ const OrderForm = ({startOrderFetchingAsync, isLoading, token}) => {
     const [fromAddress, setFromAddress] = useState('')
     const [toAddress, setToAddress] = useState('')
     const [additionalAddresses, setAdditionalAddresses] = useState([])
-    const [valid, setValid] = useState(true)
+    const [valid, setValid] = useState(false)
+    const [touched, setTouched] = useState(false)
 
-//TODO не давать создавать заказ с пустым номером
     const validPhone = phone => {
         const reg = /[^[a-z]\+?(\d{1,3})?(\d{6,12})/
         if (reg.test(phone)) {
-            setPhone(phone)
             setValid(true)
+            setTouched(false)
         }else{
             setValid(false)
+            setTouched(true)
         }
     }
 
@@ -57,12 +58,13 @@ const OrderForm = ({startOrderFetchingAsync, isLoading, token}) => {
                 setValid(true)
             }
         }
+        setTouched(true)
     }
 
     return (
         <form className='form' onSubmit={handleSubmit}>
             {
-                valid?
+                valid || !touched ?
                     <FormInput
                         label={'Телефон'}
                         placeholder={'Введите номер телефона'}

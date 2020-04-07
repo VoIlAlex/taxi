@@ -34,9 +34,10 @@ const OrderInf = ({id, date, from_address, to_addresses, zIndex, deletePendingOr
                 <p><span>{from_address}</span> <Arrow className={'arrow'}/> <span>{to_addresses[0]}</span></p>
             </div>
             {
-                showRemoveOrder ?
-                    <div className="delete-block" onClick={() => {deletePendingOrder(id); setShowRemoveOrder(!showRemoveOrder)}}><small>Отменить</small></div>
-                    : ''
+                showRemoveOrder?
+                    <div className="delete-block" onClick={() => {deletePendingOrder(id); setShowRemoveOrder(!showRemoveOrder)}}>
+                        <small>Отменить</small>
+                    </div> : ''
             }
         </div>
     )
