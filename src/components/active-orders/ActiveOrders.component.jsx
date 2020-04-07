@@ -6,7 +6,7 @@ import './active-orders.style.scss'
 
 const ActiveOrders = ({pendingOrders}) => {
     return (
-        <>
+        <div className={'orders'}>
             {
                 pendingOrders ?
                     [...pendingOrders].reverse().map((order, i) => (
@@ -20,7 +20,7 @@ const ActiveOrders = ({pendingOrders}) => {
                         )
                     ) : ''
             }
-        </>
+        </div>
     )
 }
 
