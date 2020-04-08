@@ -1,6 +1,10 @@
 .orders{
   margin-bottom: 5vh;
 
+  @media screen and (max-width: 600px) {
+    width: 100%;
+  }
+
   .active-orders {
     position: relative;
     display: flex;
