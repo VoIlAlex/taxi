@@ -4,25 +4,24 @@ import {connect} from 'react-redux'
 import {deletePendingOrder} from "../../redux/order/order.actions";
 import {ReactComponent as Arrow} from '../../asserts/arrow.svg'
 
-const formatDate = date => {
-    if (date < 10) return date = '0' + date
-    return date
-}
-
-const OrderInf = ({id, date, from_address, to_addresses, zIndex, deletePendingOrder}) => {
+const OrderInf = ({date, from_address, order, waiting, to_address, time, status, call_sign, deletePendingOrder}) => {
     const [showRemoveOrder, setShowRemoveOrder] = useState(false)
     return (
         <div className="order">
             <div className="order-inf">
                 <div className="main-inf">
-                    <span className={'order-id'}>{id.slice(1, 6)}</span>
-                    <span
-                        className={'order-date'}>{formatDate(date.getDate())}.{formatDate(date.getMonth() + 1)}.{date.getFullYear()}</span>
-                    <span className={'order-time'}>{formatDate(date.getHours())}:{formatDate(date.getMinutes())}</span>
-                    <span>0м</span>
+                    <span className={'order-id'}>#{order}</span>
+                    <span className={'order-date'}>{date}</span>
+                    <span className={'order-time'}>{time}</span>
+                    <span>{waiting}</span>
                 </div>
                 <div className="cancel">
-                    <span className="order-cancel">Создан</span>
+                    <div className='call-sign'>
+                        <span>{call_sign}</span>
+                        <span className="order-cancel">
+                        {status === 'Waiting' ? 'Ожидание' : status === 'Driving' ? 'Выехал' : 'Создан'}
+                    </span>
+                    </div>
                     <div className="dots" onClick={() => setShowRemoveOrder(!showRemoveOrder)}>
                         <div/>
                         <div/>
@@ -31,11 +30,16 @@ const OrderInf = ({id, date, from_address, to_addresses, zIndex, deletePendingOr
                 </div>
             </div>
             <div className="order-address">
-                <p><span>{from_address}</span> <Arrow className={'arrow'}/> <span>{to_addresses[0]}</span></p>
+                <p><span>{from_address}</span> <Arrow className={'arrow'}/>
+                    <span>{Array.isArray(to_address) ? to_address[0] : to_address}</span>
+                </p>
             </div>
             {
-                showRemoveOrder?
-                    <div className="delete-block" onClick={() => {deletePendingOrder(id); setShowRemoveOrder(!showRemoveOrder)}}>
+                showRemoveOrder ?
+                    <div className="delete-block" onClick={() => {
+                        deletePendingOrder(order);
+                        setShowRemoveOrder(!showRemoveOrder)
+                    }}>
                         <small>Отменить</small>
                     </div> : ''
             }
@@ -44,7 +48,7 @@ const OrderInf = ({id, date, from_address, to_addresses, zIndex, deletePendingOr
 }
 
 const mapDispatchToProps = dispatch => ({
-    deletePendingOrder: id => dispatch(deletePendingOrder(id))
+    deletePendingOrder: order => dispatch(deletePendingOrder(order))
 })
 
 export default connect(null, mapDispatchToProps)(OrderInf)

@@ -5,7 +5,9 @@ const {
     START_ORDER_FETCH,
     SUCCESS_ORDER_FETCH,
     FAILURE_ORDER_FETCH,
-    DELETE_PENDING_ORDERS
+    DELETE_PENDING_ORDERS,
+    SUCCESS_FETCH_PENDING_ORDERS,
+    FAILURE_FETCH_PENDING_ORDERS
 } = actionTypes
 
 const initialState = {
@@ -18,16 +20,27 @@ const initialState = {
 
 const orderReducer = (state = initialState, action) => {
     switch (action.type) {
+        case FAILURE_FETCH_PENDING_ORDERS:
+            return {
+                ...state,
+                isLoadingPending: false,
+                error: action.payload
+            }
+        case SUCCESS_FETCH_PENDING_ORDERS:
+            return {
+                ...state,
+                isLoadingPending: false,
+                pendingOrders: action.payload
+            }
         case DELETE_PENDING_ORDERS:
             return {
                 ...state,
-                pendingOrders: state.pendingOrders.filter(order => order.id !== action.payload)
+                pendingOrders: state.pendingOrders.filter(order => order.order !== action.payload)
             }
         case SET_SHOW_SUCCESS:
             return {
                 ...state,
                 showSuccess: !state.showSuccess,
-                // nor break orderCredentials
                 orderCredentials: {}
             }
         case START_ORDER_FETCH:
@@ -41,7 +54,7 @@ const orderReducer = (state = initialState, action) => {
                 isLoading: false,
                 showSuccess: true,
                 orderCredentials: {...action.payload},
-                pendingOrders: [...state.pendingOrders, action.payload]
+                pendingOrders: [...state.pendingOrders, {...action.payload, to_address: action.payload.to_addresses[0]}]
             }
         case FAILURE_ORDER_FETCH:
             return {

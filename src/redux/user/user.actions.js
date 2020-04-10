@@ -23,7 +23,7 @@ export const signInStartAsync = (userCredentials) => {
             method: "post",
             withCredentials: true
         })
-            .then(res => dispatch(signInSuccess({...userCredentials, token: res.headers['authorization']})))
+            .then(res => dispatch(signInSuccess({...userCredentials})))
             .catch(err => dispatch(signInFailure(err.message)))
     }
 }

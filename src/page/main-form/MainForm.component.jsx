@@ -1,10 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {createStructuredSelector} from "reselect";
-
-import {selectShowSuccess} from '../../redux/order/order.selectors'
-
 import OrderForm from "../../components/order-form/OrderForm.component";
 import SuccessOrder from "../../components/succes-order/SuccessOrder.component";
 import ActiveOrders from '../../components/active-orders/ActiveOrders.component';
@@ -23,13 +19,14 @@ const MainForm = ({showSuccess}) => {
                         <OrderForm/>
                 }
             </div>
+
             <ActiveOrders/>
         </>
     )
 }
 
-const mapStateToProps = createStructuredSelector({
-    showSuccess: selectShowSuccess
+const mapStateToProps = ({order}) => ({
+    showSuccess: order.showSuccess
 })
 
 export default connect(mapStateToProps)(MainForm)

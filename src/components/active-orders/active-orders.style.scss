@@ -10,14 +10,14 @@
     display: flex;
     justify-content: center;
     width: 640px;
-    height: 148px;
+    min-height: 148px;
     background: #FFFFFF;
     color: #C4C4C4;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.18);
     border-radius: 0 0 20px 20px;
     padding: 0;
 
-    &.left {
+    &.driving {
       background: #FFDE40;
 
       span {
@@ -29,7 +29,7 @@
       }
     }
 
-    &.expect{
+    &.waiting{
       background: #00C064;
 
       span{
@@ -68,18 +68,15 @@
           padding-top: 10px;
         }
 
-        .order-time {
-          margin-left: 25px;
-        }
-
         .cancel {
-          cursor: pointer;
+          width: 45%;
           display: flex;
+          justify-content: center;
 
           @media screen and (max-width: 600px) {
             position: absolute;
             width: 80%;
-            bottom: 15px;
+            bottom: 10px;
             display: flex;
             justify-content: space-between;
           }
@@ -95,20 +92,37 @@
           }
         }
 
+        .call-sign{
+          display: flex;
+          justify-content: center;
+          width: 70%;
+
+          @media screen and (max-width: 600px) {
+            margin-right: 0;
+            margin-left: 0;
+            justify-content: flex-start;
+          }
+
+          span{
+            margin-right: -20px;
+          }
+        }
+
         .dots {
           margin-top: 3px;
-          padding-left: 5px;
-          width: 20px;
+          margin-left: 20px;
+          width: 10%;
           display: flex;
           align-items: center;
           justify-content: space-around;
-        }
+          cursor: pointer;
 
-        .dots div {
-          width: 4px;
-          height: 4px;
-          background: #C4C4C4;
-          border-radius: 50%;
+          div {
+            width: 4px;
+            height: 4px;
+            background: #C4C4C4;
+            border-radius: 50%;
+          }
         }
 
         .main-inf {
@@ -125,6 +139,9 @@
 
         span{
           color:black;
+          @media screen and (max-width: 600px) {
+            margin-bottom: 5px;
+          }
         }
 
         p{

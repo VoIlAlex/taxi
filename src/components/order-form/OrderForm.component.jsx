@@ -10,7 +10,7 @@ import LottieLoader from "../lottie-loader/LootieLoader.component";
 
 import './order-form.style.scss'
 
-const OrderForm = ({startOrderFetchingAsync, isLoading, token}) => {
+const OrderForm = ({startOrderFetchingAsync, isLoading}) => {
 
     const [phone, setPhone] = useState('+375')
     const [fromAddress, setFromAddress] = useState('')
@@ -49,7 +49,7 @@ const OrderForm = ({startOrderFetchingAsync, isLoading, token}) => {
                 phone,
                 from_address: fromAddress,
                 to_addresses: [toAddress, ...additionalAddresses.map(({address}) => address)]
-            }, token)
+            })
             return ()=> {
                 setPhone('+375')
                 setAdditionalAddresses([])
@@ -133,11 +133,11 @@ const OrderForm = ({startOrderFetchingAsync, isLoading, token}) => {
 
 const mapStateToProps = (state) => ({
     isLoading: state.order.isLoading,
-    token: state.user.currentUser.token
+    pendingOrders: state.order.pendingOrders
 })
 
 const mapDispatchToProps = dispatch => ({
-    startOrderFetchingAsync: (orderCredentials, token) => dispatch(startOrderFetchingAsync(orderCredentials, token))
+    startOrderFetchingAsync: orderCredentials => dispatch(startOrderFetchingAsync(orderCredentials))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderForm)

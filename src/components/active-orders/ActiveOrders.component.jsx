@@ -1,18 +1,24 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
 import OrderInf from "../order-inf/OrderInf.component";
 
+import {fetchPendingOrdersAsync} from "../../redux/order/order.actions";
+
 import './active-orders.style.scss'
 
-const ActiveOrders = ({pendingOrders}) => {
+const ActiveOrders = ({pendingOrders, fetchPendingOrdersAsync}) => {
+
+    useEffect(()=> {
+        fetchPendingOrdersAsync()
+    }, [fetchPendingOrdersAsync])
+
     return (
         <div className={'orders'}>
             {
                 pendingOrders ?
                     [...pendingOrders].reverse().map((order, i) => (
-                        //TODO order status
                             <div key={i} className={
-                                `${i === 0 ? 'left' : i === 1 ? 'expect' : ''} 
+                                `${order.status === 'Driving' ? 'driving' : order.status === 'Waiting'? 'waiting' : ''} 
                                         active-orders`
                             } style={i!==0? {'marginTop': '-30px','zIndex': 100 - i}: {'marginTop': '-45px','zIndex': 100 - i}}>
                                 <OrderInf zIndex={i} {...order}/>
@@ -28,4 +34,8 @@ const mapStateToProps = state => ({
     pendingOrders: state.order.pendingOrders
 })
 
-export default connect(mapStateToProps)(ActiveOrders)
+const mapDispatchToProps = dispatch => ({
+    fetchPendingOrdersAsync: () => dispatch(fetchPendingOrdersAsync())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ActiveOrders)
