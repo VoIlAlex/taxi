@@ -10,6 +10,9 @@ const ActiveOrders = ({pendingOrders, fetchPendingOrdersAsync}) => {
 
     useEffect(()=> {
         fetchPendingOrdersAsync()
+        setInterval(()=>{
+            fetchPendingOrdersAsync()
+        }, 10000)
     }, [fetchPendingOrdersAsync])
 
     return (
