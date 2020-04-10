@@ -19,8 +19,8 @@ const OrderInf = ({date, from_address, order, waiting, to_address, time, status,
                     <div className='call-sign'>
                         <span>{call_sign}</span>
                         <span className="order-cancel">
-                        {status === 'Waiting' ? 'Ожидание' : status === 'Driving' ? 'Выехал' : 'Создан'}
-                    </span>
+                            {status === 'Waiting' ? 'Ожидание' : status === 'Driving' ? 'Выехал' : 'Создан'}
+                        </span>
                     </div>
                     <div className="dots" onClick={() => setShowRemoveOrder(!showRemoveOrder)}>
                         <div/>
@@ -30,9 +30,7 @@ const OrderInf = ({date, from_address, order, waiting, to_address, time, status,
                 </div>
             </div>
             <div className="order-address">
-                <p><span>{from_address}</span> <Arrow className={'arrow'}/>
-                    <span>{Array.isArray(to_address) ? to_address[0] : to_address}</span>
-                </p>
+                <p><span>{from_address}</span> <Arrow className={'arrow'}/><span>{to_address}</span></p>
             </div>
             {
                 showRemoveOrder ?

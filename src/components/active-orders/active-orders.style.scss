@@ -106,6 +106,10 @@
           span{
             margin-right: -20px;
           }
+
+          .order-cancel{
+            margin-left: 10px;
+          }
         }
 
         .dots {
@@ -133,6 +137,7 @@
       }
 
       .order-address {
+        min-height: 45%;
         font-size: 18px;
         line-height: 20px;
         color: black;
@@ -151,7 +156,7 @@
           }
         }
         .arrow{
-          padding-bottom: 3px;
+          padding: 3px 3px;
 
           @media screen and (max-width: 600px) {
             display: none;
