@@ -24,9 +24,11 @@ const OrderForm = ({startOrderFetchingAsync, isLoading}) => {
         if (reg.test(phone)) {
             setValid(true)
             setTouched(false)
+            setPhone(phone)
         }else{
             setValid(false)
             setTouched(true)
+            setPhone(phone)
         }
     }
 
@@ -46,6 +48,11 @@ const OrderForm = ({startOrderFetchingAsync, isLoading}) => {
         event.preventDefault()
         if(valid) {
             startOrderFetchingAsync({
+                phone,
+                from_address: fromAddress,
+                to_addresses: [toAddress, ...additionalAddresses.map(({address}) => address)]
+            })
+            console.log({
                 phone,
                 from_address: fromAddress,
                 to_addresses: [toAddress, ...additionalAddresses.map(({address}) => address)]
