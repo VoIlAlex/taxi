@@ -20,15 +20,14 @@ const OrderForm = ({startOrderFetchingAsync, isLoading}) => {
     const [touched, setTouched] = useState(false)
 
     const validPhone = phone => {
+        setPhone(phone)
         const reg = /[^[a-z]\+?(\d{1,3})?(\d{6,12})/
         if (reg.test(phone)) {
             setValid(true)
             setTouched(false)
-            setPhone(phone)
         }else{
             setValid(false)
             setTouched(true)
-            setPhone(phone)
         }
     }
 
