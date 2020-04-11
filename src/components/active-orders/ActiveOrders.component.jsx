@@ -23,7 +23,7 @@ const ActiveOrders = ({pendingOrders, fetchPendingOrdersAsync}) => {
                             <div key={i} className={
                                 `${order.status === 'Driving' ? 'driving' : order.status === 'Waiting'? 'waiting' : ''} 
                                         active-orders`
-                            } style={i!==0? {'marginTop': '-30px','zIndex': 100 - i}: {'marginTop': '-55px','zIndex': 100 - i}}>
+                            } style={i!==0? {'marginTop': '-30px','zIndex': 100 - i}: {'marginTop': '-65px','zIndex': 100 - i}}>
                                 <OrderInf zIndex={i} {...order}/>
                             </div>
                         )
