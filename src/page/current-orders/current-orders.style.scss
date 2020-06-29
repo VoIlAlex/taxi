@@ -1,0 +1,105 @@
+.table {
+  width: 99%;
+  margin: 85px 5px;
+
+  @media screen and (max-width: 600px) {
+    overflow-x: scroll;
+  }
+}
+
+table {
+  width: 100%;
+  border-radius: 8px;
+  border-collapse: collapse;
+  background: white;
+  font-size: 14px;
+
+  @media screen and (max-width: 600px) {
+    width: 1520px;
+  }
+
+  tr {
+    height: 36px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    text-align: left;
+    position: relative;
+
+
+    @media screen and (max-width: 600px) {
+      td:last-of-type {
+        margin-top: 5px;
+        position: absolute;
+        right: 0;
+      }
+    }
+  }
+
+  td:first-of-type {
+    padding-left: 7px;
+  }
+
+  .wait {
+    background: linear-gradient(0deg, #00C064, #00C064), linear-gradient(0deg, #FFDE40, #FFDE40), #FFFFFF;
+
+    .dots{
+      background: linear-gradient(0deg, #00C064, #00C064), linear-gradient(0deg, #FFDE40, #FFDE40), #FFFFFF;
+    }
+  }
+
+  .left {
+    background: linear-gradient(0deg, #FFDE40, #FFDE40), #FFFFFF;
+
+    .dots{
+      background: linear-gradient(0deg, #FFDE40, #FFDE40), #FFFFFF;
+    }
+  }
+
+  .dots {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    padding-right: 5px;
+    background: linear-gradient(270deg, #FFFFFF 48%, rgba(255, 255, 255, 0) 100%);
+
+    &:hover {
+      & div {
+        background: #6d6666;
+      }
+    }
+
+    div {
+      margin-bottom: 2px;
+      width: 3px;
+      height: 3px;
+      background: black;
+    }
+
+    @media screen and (max-width: 600px) {
+      & {
+        padding: 5px 8px;
+      }
+    }
+  }
+
+  .delete-block {
+    position: absolute;
+    width: 140px;
+    height: 40px;
+    font-size: 16px;
+    color: black;
+    background: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 30px;
+    cursor: pointer;
+    transition: color, background-color 0.15s ease-in;
+
+    &:hover {
+      background: #C00000;
+      color: white;
+    }
+  }
+}

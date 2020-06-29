@@ -1,17 +1,23 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Route} from 'react-router-dom'
+import {Route, Switch} from 'react-router-dom'
 
 import SignInPage from "../../page/sign-in-page/SignInPage.component";
 import MainForm from "../../page/main-form/MainForm.component";
+import CurrentOrders from "../../page/current-orders/CurrentOrders.component";
 
 const Routes = ({currentUser}) => {
     return (
         currentUser
-        ?
-            <Route path={'/'} component={MainForm} />
+            ?
+            <>
+                <Switch>
+                    <Route exact path={'/'} component={MainForm}/>
+                    <Route path={'/currentorders'} component={CurrentOrders}/>
+                </Switch>
+            </>
             :
-            <Route path={'/'} component={SignInPage} />
+            <Route path={'/'} component={SignInPage}/>
     )
 }
 
