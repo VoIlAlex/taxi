@@ -37,13 +37,13 @@ const OrderInf = ({
                 <p><span>{taxiPark}</span> &nbsp; - &nbsp; <span>{driver}</span></p>
             </div>
             {
-                showRemoveOrder ?
+                showRemoveOrder &&
                     <div className="delete-block" onClick={() => {
                         deletePendingOrder(order);
                         setShowRemoveOrder(!showRemoveOrder)
                     }}>
                         <small>Отменить</small>
-                    </div> : ''
+                    </div>
             }
         </div>
     )

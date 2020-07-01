@@ -8,7 +8,6 @@ import TableBody from "../../components/table/TableBody.component";
 import './current-orders.style.scss'
 
 const CurrentOrders = () => {
-    //Обработка пустого массива заказов
     const orders = [
         {
             taxName: 'OOO "Андрейка"',

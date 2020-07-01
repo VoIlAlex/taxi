@@ -7,6 +7,7 @@ const TableBody = ({
                        number, filed, where, apply, onPlace, driver
                    }) => {
     const [showRemoveOrder, setShowRemoveOrder] = useState(false)
+
     return (
         <tr className={`${status==='Выехал'? 'left':status==='Ожидание'?'wait':''}`}>
             <td>{taxName? taxName:'Не определен'}</td>
@@ -29,13 +30,13 @@ const TableBody = ({
                 </div>
             </td>
             {
-                showRemoveOrder ?
+                showRemoveOrder &&
                     <div className="delete-block" onClick={() => {
                         deletePendingOrder(order);
                         setShowRemoveOrder(!showRemoveOrder)
                     }}>
                         <small>Отменить</small>
-                    </div> : ''
+                    </div>
             }
         </tr>
 
