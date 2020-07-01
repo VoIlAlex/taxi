@@ -15,7 +15,7 @@ export const signInSuccess = user => ({
     payload: user
 })
 
-export const signInStartAsync = (userCredentials) => {
+export const signInStartAsync = (userCredentials, cb) => {
     return async dispatch => {
         dispatch(signInStart())
         await axios('https://kandk.team/api/login/', {
@@ -23,7 +23,10 @@ export const signInStartAsync = (userCredentials) => {
             method: "post",
             withCredentials: true
         })
-            .then(res => dispatch(signInSuccess({...userCredentials})))
+            .then(res => {
+                dispatch(signInSuccess({...userCredentials}))
+                cb()
+            })
             .catch(err => dispatch(signInFailure(err.message)))
     }
 }

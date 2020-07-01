@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
+import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
+import {compose} from "redux";
 
 import FormInput from "../form-input/FormInput.component";
 import CustomButton from "../custom-button/CustomButton.component";
@@ -9,7 +11,7 @@ import {signInStartAsync} from '../../redux/user/user.actions'
 
 import './sign-in-form.style.scss'
 
-const SignInForm = ({isLoading, error, signInStartAsync}) => {
+const SignInForm = ({isLoading, error, history, signInStartAsync}) => {
 
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
@@ -19,7 +21,7 @@ const SignInForm = ({isLoading, error, signInStartAsync}) => {
         signInStartAsync({
             login,
             password
-        })
+        }, () => history.push('/'))
     }
 
     return (
@@ -56,7 +58,10 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    signInStartAsync: userCredentials => dispatch(signInStartAsync(userCredentials))
+    signInStartAsync: (userCredentials, cb) => dispatch(signInStartAsync(userCredentials, cb))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignInForm)
+export default compose(
+    withRouter,
+    connect(mapStateToProps, mapDispatchToProps)
+)(SignInForm)
