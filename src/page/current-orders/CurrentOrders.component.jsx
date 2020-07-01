@@ -2,8 +2,8 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 
 import Links from '../../components/links/Links.component'
-import TableHead from "../../components/form-input/TableHead.component";
-import TableBody from "../../components/form-input/TableBody.component";
+import TableHead from "../../components/table/TableHead.component";
+import TableBody from "../../components/table/TableBody.component";
 
 import './current-orders.style.scss'
 
