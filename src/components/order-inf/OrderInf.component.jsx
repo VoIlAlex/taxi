@@ -4,7 +4,10 @@ import {connect} from 'react-redux'
 import {deletePendingOrder} from "../../redux/order/order.actions";
 import {ReactComponent as Arrow} from '../../asserts/arrow.svg'
 
-const OrderInf = ({date, from_address, order, waiting, to_address, time, status, call_sign, deletePendingOrder}) => {
+const OrderInf = ({
+                      date, from_address, order, waiting, to_address, driver, taxiPark,
+                      time, status, call_sign, deletePendingOrder
+                  }) => {
     const [showRemoveOrder, setShowRemoveOrder] = useState(false)
     return (
         <div className="order">
@@ -31,6 +34,7 @@ const OrderInf = ({date, from_address, order, waiting, to_address, time, status,
             </div>
             <div className="order-address">
                 <p><span>{from_address}</span> <Arrow className={'arrow'}/><span>{to_address}</span></p>
+                <p><span>{taxiPark}</span> &nbsp; - &nbsp; <span>{driver}</span></p>
             </div>
             {
                 showRemoveOrder ?
