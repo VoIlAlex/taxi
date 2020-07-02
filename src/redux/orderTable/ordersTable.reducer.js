@@ -1,18 +1,15 @@
-import actionTypes from "./order.types";
+import {sortTable} from '../../utills/tableSort'
+import actionTypes from './ordersTable.types'
 
 const {
-    SET_SHOW_SUCCESS,
-    START_ORDER_FETCH,
-    SUCCESS_ORDER_FETCH,
-    FAILURE_ORDER_FETCH,
-    DELETE_PENDING_ORDERS,
-    SUCCESS_FETCH_PENDING_ORDERS,
-    FAILURE_FETCH_PENDING_ORDERS,
+    FETCH_ORDERS_SUCCESS,
+    FETCH_ORDERS_FAILURE,
+    FILTER_TABLE_SUCCESS,
+    FILTER_TABLE_START
 } = actionTypes
 
 const initialState = {
-    orderCredentials: {},
-    pendingOrders: [
+    ordersList: [
         {
             taxName: 'OOO "Андрейка"',
             order: '123456',
@@ -70,58 +67,38 @@ const initialState = {
             driver: 'Инокентий Сквозьаупенко'
         }
     ],
-    showSuccess: false,
     isLoading: false,
     error: null
 }
 
-const orderReducer = (state = initialState, action) => {
+const ordersTableReducer = (state=initialState, action) => {
     switch (action.type) {
-        case FAILURE_FETCH_PENDING_ORDERS:
+        case FETCH_ORDERS_FAILURE:
             return {
                 ...state,
-                isLoadingPending: false,
                 error: action.payload
             }
-        case SUCCESS_FETCH_PENDING_ORDERS:
+        case FETCH_ORDERS_SUCCESS:
             return {
                 ...state,
-                isLoadingPending: false,
-                pendingOrders: action.payload
+                error:null,
+                ordersList: action.payload,
+                isLoading: false
             }
-        case DELETE_PENDING_ORDERS:
+        case FILTER_TABLE_SUCCESS:
             return {
                 ...state,
-                pendingOrders: state.pendingOrders.filter(order => order.order !== action.payload)
+                ordersList: [...sortTable(state.ordersList, action.payload.filterParam, action.payload.direction)],
+                isLoading: false
             }
-        case SET_SHOW_SUCCESS:
-            return {
-                ...state,
-                showSuccess: !state.showSuccess,
-                orderCredentials: {}
-            }
-        case START_ORDER_FETCH:
+        case FILTER_TABLE_START:
             return {
                 ...state,
                 isLoading: true
             }
-        case SUCCESS_ORDER_FETCH:
-            return {
-                ...state,
-                isLoading: false,
-                showSuccess: true,
-                orderCredentials: {...action.payload},
-                pendingOrders: [...state.pendingOrders, {...action.payload, to_address: action.payload.to_addresses[0]}]
-            }
-        case FAILURE_ORDER_FETCH:
-            return {
-                ...state,
-                isLoading: false,
-                error: action.payload
-            }
-        default:
-            return state
+        default: return state
     }
 }
 
-export default orderReducer
+export default ordersTableReducer
+

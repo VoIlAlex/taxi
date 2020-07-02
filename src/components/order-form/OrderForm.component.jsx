@@ -132,7 +132,7 @@ const OrderForm = ({startOrderFetchingAsync, isLoading}) => {
     )
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     isLoading: state.order.isLoading,
     pendingOrders: state.order.pendingOrders
 })

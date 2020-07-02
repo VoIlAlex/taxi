@@ -7,7 +7,6 @@ import {fetchPendingOrdersAsync} from "../../redux/order/order.actions";
 import './active-orders.style.scss'
 
 const ActiveOrders = ({pendingOrders, fetchPendingOrdersAsync}) => {
-
     useEffect(()=> {
         fetchPendingOrdersAsync()
         setInterval(()=>{
