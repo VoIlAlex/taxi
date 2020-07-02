@@ -17,7 +17,7 @@ const CurrentOrders = ({orders}) => {
                 !orders.length ? <h2>У вас пока нет заказов. <Link to={'/'}>Создать?</Link></h2> :
                     <div className="table">
                         <table>
-                            <TableHead />
+                            <TableHead orders={orders}/>
                             <tbody>
                             {
                                 orders.map((order, i) => (<TableBody key={i} {...order}/>))

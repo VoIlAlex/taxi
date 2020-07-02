@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {connect} from 'react-redux'
 
+import {accodanceParam} from '../../utills/accodanceParam'
 import {filterTable} from '../../redux/orderTable/ordersTable.actions'
 import {ReactComponent as FilterIcon} from '../../asserts/filter-icon.svg'
 
@@ -10,6 +11,25 @@ const columnName = [
 ]
 
 const TableHead = ({orders, filterTable}) => {
+    const [direction, setDirection] = useState({
+        taxName: true,
+        order: true,
+        time: true,
+        status: true,
+        number: true,
+        filed: true,
+        where: true,
+        apply: true,
+        onPlace: true,
+        driver: true
+    })
+
+    const filterHandler = param => {
+        let key = accodanceParam(param)
+        setDirection({...direction, [key]: !direction[key]})
+        filterTable(param, direction[key])
+    }
+
     return (
         <thead>
         <tr>
@@ -17,7 +37,7 @@ const TableHead = ({orders, filterTable}) => {
                 columnName.map((name, i) => (
                     <th
                         key={i}
-                        onClick={() => filterTable(name, 'right')}
+                        onClick={() => filterHandler(name)}
                     >
                         <FilterIcon className={'filter-icon'}/> {name}
                     </th>
