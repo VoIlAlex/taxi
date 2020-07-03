@@ -1,18 +1,20 @@
 import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
-import OrderInf from "../order-inf/OrderInf.component";
 
+import OrderInf from "../order-inf/OrderInf.component";
 import {fetchPendingOrdersAsync} from "../../redux/order/order.actions";
+import {useInterval} from '../../hooks/useInterval'
 
 import './active-orders.style.scss'
 
 const ActiveOrders = ({pendingOrders, fetchPendingOrdersAsync}) => {
-    useEffect(()=> {
+    useEffect(() => {
         fetchPendingOrdersAsync()
-        setInterval(()=>{
-            fetchPendingOrdersAsync()
-        }, 7000)
     }, [fetchPendingOrdersAsync])
+
+    useInterval(async () => {
+        await fetchPendingOrdersAsync()
+    }, 7000)
 
     return (
         <div className={'orders'}>
@@ -22,9 +24,12 @@ const ActiveOrders = ({pendingOrders, fetchPendingOrdersAsync}) => {
                             <div
                                 key={i}
                                 className={
-                                `${order.status === 'Driving' ? 'driving' : order.status === 'Waiting'? 'waiting' : ''} 
+                                    `${order.status === 'Driving' ? 'driving' : order.status === 'Waiting' ? 'waiting' : ''} 
                                         active-orders`
-                            } style={i!==0? {'marginTop': '-30px','zIndex': 100 - i}: {'marginTop': '-65px','zIndex': 100 - i}}>
+                                } style={i !== 0 ? {'marginTop': '-30px', 'zIndex': 100 - i} : {
+                                'marginTop': '-65px',
+                                'zIndex': 100 - i
+                            }}>
                                 <OrderInf zIndex={i} {...order}/>
                             </div>
                         )

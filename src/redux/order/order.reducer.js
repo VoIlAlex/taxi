@@ -12,64 +12,7 @@ const {
 
 const initialState = {
     orderCredentials: {},
-    pendingOrders: [
-        {
-            taxName: 'OOO "Андрейка"',
-            order: '123456',
-            date: '02.12.20',
-            time: '12:10',
-            status: 'создан',
-            waiting: '[ -10min]',
-            number: '+375298220686',
-            filed: 'проеспект Антонова, 10',
-            where: 'проспект Маяковского, 283/5',
-            apply: '19:10',
-            onPlace: '15:12',
-            driver: 'Виктор Гаупенко'
-        },
-        {
-            taxName: 'OOO "Максимка"',
-            order: '223456',
-            date: '02.12.20',
-            time: '12:10',
-            status: 'Ожидание',
-            waiting: '[ -1min]',
-            number: '+375291234686',
-            filed: 'улица Пантелеймонова, 10',
-            where: 'проспект Машерова, 283/5',
-            apply: '19:10',
-            onPlace: '15:12',
-            driver: 'Михаил Негаупенко'
-        },
-        {
-            taxName: 'OOO "ГлебейкаБлять"',
-            order: '423456',
-            date: '02.12.20',
-            time: '11:10',
-            status: 'Выехал',
-            waiting: '[ -24min]',
-            number: '+355298220686',
-            filed: 'проспект Машерова, 10',
-            where: 'улица КогоНибудь, 283/5',
-            apply: '19:10',
-            onPlace: '15:12',
-            driver: 'Эдуард Загаупенко'
-        },
-        {
-            taxName: 'OOO "КакМожноНазвать"',
-            order: '423456',
-            date: '02.12.20',
-            time: '22:30',
-            status: 'создан',
-            waiting: '[ -121min]',
-            number: '+315298220686',
-            filed: 'улица Антонова, 10',
-            where: 'проспект Космонавт',
-            apply: '19:10',
-            onPlace: '15:12',
-            driver: 'Инокентий Сквозьаупенко'
-        }
-    ],
+    pendingOrders: [],
     showSuccess: false,
     isLoading: false,
     error: null

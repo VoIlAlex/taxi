@@ -35,7 +35,7 @@ const startOrderFetch = () => ({
     type: START_ORDER_FETCH
 })
 
-const failureOrderFetch = (msg) => ({
+const failureOrderFetch = msg => ({
     type: FAILURE_ORDER_FETCH,
     payload: msg
 })
