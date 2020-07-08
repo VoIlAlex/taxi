@@ -1,14 +1,19 @@
 import React, {useState} from 'react'
 import {connect} from 'react-redux'
 
-import {deletePendingOrder} from "../../redux/order/order.actions";
+import {startDeleteOrderAsync} from "../../redux/order/order.actions";
 import {ReactComponent as Arrow} from '../../asserts/arrow.svg'
 
 const OrderInf = ({
-                      date, from_address, order, waiting, to_address, driver, taxiPark,
-                      time, status, call_sign, deletePendingOrder
+                      date, from_address, order, waiting, to_address, driver,
+                      taxiPark, time, status, call_sign, startDeleteOrderAsync
                   }) => {
     const [showRemoveOrder, setShowRemoveOrder] = useState(false)
+
+    const deleteHandler = id => {
+        startDeleteOrderAsync(id);
+        setShowRemoveOrder(!showRemoveOrder)
+    }
     return (
         <div className="order">
             <div className="order-inf">
@@ -38,10 +43,7 @@ const OrderInf = ({
             </div>
             {
                 showRemoveOrder &&
-                    <div className="delete-block" onClick={() => {
-                        deletePendingOrder(order);
-                        setShowRemoveOrder(!showRemoveOrder)
-                    }}>
+                    <div className="delete-block" onClick={() => deleteHandler(order)}>
                         <small>Отменить</small>
                     </div>
             }
@@ -50,7 +52,7 @@ const OrderInf = ({
 }
 
 const mapDispatchToProps = dispatch => ({
-    deletePendingOrder: order => dispatch(deletePendingOrder(order))
+    startDeleteOrderAsync: id => dispatch(startDeleteOrderAsync(id))
 })
 
 export default connect(null, mapDispatchToProps)(OrderInf)

@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
-import {startFetchingOrdersAsync} from "../../redux/orderTable/ordersTable.actions";
+import {fetchPendingOrdersAsync} from'../../redux/order/order.actions'
 
 import Links from '../../components/links/Links.component'
 import TableHead from "../../components/table/TableHead.component";
@@ -11,10 +11,11 @@ import LottieLoader from "../../components/lottie-loader/LootieLoader.component"
 
 import './current-orders.style.scss'
 
-const CurrentOrders = ({orders, isLoading, startFetchingOrdersAsync}) => {
+const CurrentOrders = ({orders, fetchPendingOrdersAsync}) => {
+    const [isLoading, setIsLoading] = useState(true)
     useEffect(() => {
-        startFetchingOrdersAsync()
-    }, [startFetchingOrdersAsync])
+        fetchPendingOrdersAsync(()=>setIsLoading(false))
+    }, [fetchPendingOrdersAsync])
 
     return (
         <>
@@ -38,12 +39,11 @@ const CurrentOrders = ({orders, isLoading, startFetchingOrdersAsync}) => {
 }
 
 const mapStateToProps = state => ({
-    orders: state.ordersTable.ordersList,
-    isLoading: state.ordersTable.isLoading
+    orders: state.order.pendingOrders
 })
 
 const mapDispatchToProps = dispatch => ({
-    startFetchingOrdersAsync: () => dispatch(startFetchingOrdersAsync())
+    fetchPendingOrdersAsync: cb => dispatch(fetchPendingOrdersAsync(cb))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CurrentOrders)

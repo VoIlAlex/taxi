@@ -8,6 +8,7 @@ const {
     DELETE_PENDING_ORDERS,
     SUCCESS_FETCH_PENDING_ORDERS,
     FAILURE_FETCH_PENDING_ORDERS,
+    FAILURE_DELETE_PENDING_ORDERS
 } = actionTypes
 
 const initialState = {
@@ -20,6 +21,11 @@ const initialState = {
 
 const orderReducer = (state = initialState, action) => {
     switch (action.type) {
+        case FAILURE_DELETE_PENDING_ORDERS:
+            return {
+                ...state,
+                error: action.payload
+            }
         case FAILURE_FETCH_PENDING_ORDERS:
             return {
                 ...state,
@@ -35,7 +41,7 @@ const orderReducer = (state = initialState, action) => {
         case DELETE_PENDING_ORDERS:
             return {
                 ...state,
-                pendingOrders: state.pendingOrders.filter(order => order.order !== action.payload)
+                pendingOrders: action.payload
             }
         case SET_SHOW_SUCCESS:
             return {
