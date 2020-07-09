@@ -2,17 +2,18 @@ import React from 'react'
 import {Link, withRouter} from "react-router-dom";
 
 import './links.style.scss'
+import { routes } from '../../constants/routes';
 
 const Links = ({match}) => {
     return (
         <div className="links">
             <Link
-                to={'/app'}
-                className={`${match.path === '/' ? 'active' : ''}`}
+                to={routes.main}
+                className={`${match.path === routes.main ? 'active' : ''}`}
             >Создать заказ</Link>
             <Link
-                to={'/app/currentorders'}
-                className={`${match.path === "/currentorders" ? 'active' : ''}`}
+                to={routes.currentOrders}
+                className={`${match.path === routes.currentOrders ? 'active' : ''}`}
             >Текущие заказы</Link>
         </div>
     )

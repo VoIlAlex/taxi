@@ -6,18 +6,20 @@ import SignInPage from "../../page/sign-in-page/SignInPage.component";
 import MainForm from "../../page/main-form/MainForm.component";
 import CurrentOrders from "../../page/current-orders/CurrentOrders.component";
 
+import { routes }  from "../../constants/routes";
+
 const Routes = ({currentUser}) => {
     return (
         currentUser
             ?
             <>
                 <Switch>
-                    <Route exact path={'/app/'} component={MainForm}/>
-                    <Route path={'/app/currentorders'} component={CurrentOrders}/>
+                    <Route exact path={routes.main} component={MainForm}/>
+                    <Route path={routes.currentOrders} component={CurrentOrders}/>
                 </Switch>
             </>
             :
-            <Route path={'/app/'} component={SignInPage}/>
+            <Route path={routes.main} component={SignInPage}/>
     )
 }
 
