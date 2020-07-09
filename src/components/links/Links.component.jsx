@@ -7,11 +7,11 @@ const Links = ({match}) => {
     return (
         <div className="links">
             <Link
-                to={'/'}
+                to={'/app'}
                 className={`${match.path === '/' ? 'active' : ''}`}
             >Создать заказ</Link>
             <Link
-                to={'/currentorders'}
+                to={'/app/currentorders'}
                 className={`${match.path === "/currentorders" ? 'active' : ''}`}
             >Текущие заказы</Link>
         </div>

@@ -21,7 +21,7 @@ const SignInForm = ({isLoading, error, history, signInStartAsync}) => {
         signInStartAsync({
             login,
             password
-        }, () => history.push('/'))
+        }, () => history.push('/app'))
     }
 
     return (
