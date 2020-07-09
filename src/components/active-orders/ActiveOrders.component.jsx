@@ -16,7 +16,6 @@ const ActiveOrders = ({pendingOrders, fetchPendingOrdersAsync}) => {
         await fetchPendingOrdersAsync()
     }, 7000)
 
-
     return (
         <div className={'orders'}>
             {
@@ -24,8 +23,8 @@ const ActiveOrders = ({pendingOrders, fetchPendingOrdersAsync}) => {
                     [...pendingOrders].reverse().map((order, i) => (
                             <div
                                 key={i}
-                                className={`${order.status === 'Driving' ? 
-                                        'driving' : order.status === 'Waiting' ?
+                                className={`${order.status === 'driving' ? 
+                                        'driving' : order.status === 'waiting' ?
                                             'waiting' : ''} 
                                         active-orders`}
                                 style={i !== 0 ? {'marginTop': '-30px', 'zIndex': 100 - i} : {

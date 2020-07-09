@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 import {fetchPendingOrdersAsync} from'../../redux/order/order.actions'
+import {useInterval} from "../../hooks/useInterval";
 
 import Links from '../../components/links/Links.component'
 import TableHead from "../../components/table/TableHead.component";
@@ -12,11 +13,14 @@ import LottieLoader from "../../components/lottie-loader/LootieLoader.component"
 import './current-orders.style.scss'
 
 const CurrentOrders = ({orders, fetchPendingOrdersAsync}) => {
-    const [isLoading, setIsLoading] = useState(false) //TODO change to true
+    const [isLoading, setIsLoading] = useState(true)
     useEffect(() => {
         fetchPendingOrdersAsync(()=>setIsLoading(false))
     }, [fetchPendingOrdersAsync])
 
+    useInterval(async () => {
+        await fetchPendingOrdersAsync()
+    }, 7000)
 
     return (
         <>
