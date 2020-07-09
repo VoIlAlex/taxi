@@ -10,7 +10,10 @@ const {
     DELETE_PENDING_ORDERS,
     SUCCESS_FETCH_PENDING_ORDERS,
     FAILURE_FETCH_PENDING_ORDERS,
-    FAILURE_DELETE_PENDING_ORDERS
+    FAILURE_DELETE_PENDING_ORDERS,
+    DRIVER_CHANGE_FAILURE,
+    DRIVER_CHANGE_SUCCESS,
+    FILTER_TABLE_SUCCESS
 } = actionTypes
 
 //Show success modal
@@ -18,7 +21,10 @@ export const setShowSuccess = () => ({
     type: SET_SHOW_SUCCESS
 })
 
-//Post new order
+
+//@Route    POST https://kandk.team/api/orders/
+//@Access   Cookie required
+//@Desc     Post new order
 const startOrderFetch = () => ({
     type: START_ORDER_FETCH
 })
@@ -36,32 +42,34 @@ const failureOrderFetch = msg => ({
 export const startOrderFetchingAsync = orderCredentials => {
     return async dispatch => {
         dispatch(startOrderFetch())
-         await axios('https://kandk.team/api/orders/', {
-             data: {...orderCredentials},
-             method: "post",
-             withCredentials: true
-         })
-             .then(res => dispatch(successOrderFetch({...orderCredentials, id: v4()})))
-             .catch(err => dispatch(failureOrderFetch(err.message)))
+        await axios('http://178.159.45.188/api/orders/', {
+            data: {...orderCredentials},
+            method: "post",
+            withCredentials: true
+        })
+            .then(res => dispatch(successOrderFetch({...orderCredentials, id: v4()})))
+            .catch(err => dispatch(failureOrderFetch(err.message)))
     }
 }
 
 
-//Fetch orders
+//@Route    GET https://kandk.team/api/orders/
+//@Access   Cookie required
+//@Desc     Fetch orders
 const successFetchPendingOrders = pendingOrders => ({
     type: SUCCESS_FETCH_PENDING_ORDERS,
     payload: pendingOrders
 })
 
 const failureFetchPendingOrders = err => ({
-    type:FAILURE_FETCH_PENDING_ORDERS,
+    type: FAILURE_FETCH_PENDING_ORDERS,
     payload: err
 })
 
 
 export const fetchPendingOrdersAsync = (cb = () => cb()) => {
     return async dispatch => {
-        await axios('https://kandk.team/api/orders/', {
+        await axios('http://178.159.45.188/api/orders/', {
             method: "get",
             withCredentials: true
         })
@@ -71,23 +79,60 @@ export const fetchPendingOrdersAsync = (cb = () => cb()) => {
     }
 }
 
-//Delete order
-const deletePendingOrder = orders => ({
+
+//@Route    DELETE https://kandk.team/api/orders/
+//@Access   Cookie required
+//@Desc     Delete order by id
+const deletePendingOrder = id => ({
     type: DELETE_PENDING_ORDERS,
-    payload: orders
+    payload: id
 })
 
 const failureDeleteOrder = err => ({
-    type:FAILURE_DELETE_PENDING_ORDERS,
+    type: FAILURE_DELETE_PENDING_ORDERS,
     payload: err
 })
 
 export const startDeleteOrderAsync = (id, cb) => async dispatch => {
-    await axios('https://kandk.team/api/orders/', {
+    await axios('http://178.159.45.188/api/orders/', {
         method: "delete",
         withCredentials: true
     })
-        .then(res => dispatch(deletePendingOrder(res.data.orders)))
+        .then(res => dispatch(deletePendingOrder(id)))
         .then(_ => cb())
         .catch(err => dispatch(failureDeleteOrder(err)))
 }
+
+//@Route    GET https://kandk.team/api/drivers/
+//@Access   Cookie required
+//@Desc     Change driver by order id
+const driverChangeFailure = err => ({
+    type: DRIVER_CHANGE_FAILURE,
+    payload: err
+})
+
+const driverChangeSuccess = (drivers, id) => ({
+    type: DRIVER_CHANGE_SUCCESS,
+    payload: { drivers, id }
+})
+
+export const startChangeDriverAsync = id => async dispatch => {
+    await axios('http://178.159.45.188/api/drivers/', {
+        method: 'post',
+        withCredentials: true,
+        data: {
+            "id": id
+        }
+    })
+        .then(res => dispatch(driverChangeSuccess(res.data, id)))
+        .catch(err => dispatch(driverChangeFailure(err)))
+}
+
+//Sort table
+export const filterTable = ( filterParam, direction ) => ({
+    type: FILTER_TABLE_SUCCESS,
+    payload: {
+        filterParam,
+        direction
+    }
+})

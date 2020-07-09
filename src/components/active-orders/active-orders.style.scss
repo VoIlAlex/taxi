@@ -1,4 +1,4 @@
-.orders{
+.orders {
   margin-bottom: 5vh;
 
   @media screen and (max-width: 600px) {
@@ -24,26 +24,26 @@
         color: #3F3F3F;
       }
 
-      .order-inf .cancel .dots div{
+      .order-inf .cancel .dots div {
         background: #3F3F3F;
       }
     }
 
-    &.waiting{
+    &.waiting {
       background: #00C064;
 
-      span{
+      span {
         color: #00542C;
       }
 
-      .order-inf .cancel .dots div{
+      .order-inf .cancel .dots div {
         background: #00542C;
       }
     }
 
     @media screen and (max-width: 600px) {
       width: 100%;
-      height: 173px;
+      height: 180px;
     }
 
     .order {
@@ -57,6 +57,10 @@
 
       @media screen and (max-width: 600px) {
         margin-top: 0;
+      }
+
+      .address{
+        font-size: 14px;
       }
 
       .order-inf {
@@ -92,9 +96,9 @@
           }
         }
 
-        .call-sign{
+        .call-sign {
           display: flex;
-          justify-content: center;
+          justify-content: flex-end;
           width: 70%;
 
           @media screen and (max-width: 600px) {
@@ -103,18 +107,21 @@
             justify-content: flex-start;
           }
 
-          span{
+          span {
             margin-right: -20px;
           }
 
-          .order-cancel{
+          .order-cancel {
             margin-left: 10px;
+            @media screen and (max-width: 600px) {
+              margin-left: 0;
+            }
           }
         }
 
         .dots {
           margin-top: 3px;
-          margin-left: 20px;
+          margin-left: 30px;
           width: 10%;
           display: flex;
           align-items: center;
@@ -140,53 +147,45 @@
         font-size: 18px;
         line-height: 20px;
         color: black;
+        margin: 10px 0;
 
-        span{
-          color:black;
-          @media screen and (max-width: 600px) {
-            margin-bottom: 5px;
+        .address{
+          font-size: 14px;
+          color: #3F3F3F;
+
+          span{
+            margin: 0;
           }
         }
 
-        p{
+        span {
+          color: black;
+          @media screen and (max-width: 600px) {
+            margin-bottom: 0;
+          }
+        }
+
+        .dash{
+          @media screen and (max-width: 600px) {
+            display: none;
+          }
+        }
+
+        p {
           @media screen and (max-width: 600px) {
             display: flex;
             flex-direction: column;
+            margin: 0;
           }
         }
-        .arrow{
+
+        .arrow {
           padding: 3px 3px;
 
           @media screen and (max-width: 600px) {
             display: none;
           }
         }
-      }
-    }
-
-    .delete-block{
-      position: absolute;
-      width: 140px;
-      height: 40px;
-      font-size: 18px;
-      color: black;
-      background: white;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
-      border-radius: 5px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      right: 60px;
-      cursor: pointer;
-      transition: color, background-color  0.15s ease-in;
-
-      @media screen and (max-width: 600px) {
-        bottom: 30px;
-      }
-
-      &:hover{
-        background: #C00000;
-        color: white;
       }
     }
   }

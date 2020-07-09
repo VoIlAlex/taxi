@@ -1,0 +1,43 @@
+.delete-block {
+  position: absolute;
+  width: 140px;
+  height: 60px;
+  font-size: 18px;
+  color: black;
+  background: white;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  right: 60px;
+  cursor: pointer;
+  overflow: hidden;
+
+  @media screen and (max-width: 600px) {
+    bottom: 30px;
+  }
+
+  small {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50%;
+    transition: color, background-color 0.2s ease-in;
+
+    &:hover {
+      background: #C00000;
+      color: white;
+    }
+  }
+}
+
+.modal-overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

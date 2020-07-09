@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {connect} from 'react-redux'
 
 import {accodanceParam} from '../../utills/accodanceParam'
-import {filterTable} from '../../redux/orderTable/ordersTable.actions'
+import {filterTable} from "../../redux/order/order.actions";
 import {ReactComponent as FilterIcon} from '../../asserts/filter-icon.svg'
 
 const columnName = [

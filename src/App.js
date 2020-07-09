@@ -5,6 +5,8 @@ import {BrowserRouter} from "react-router-dom";
 import {store} from "./redux/store";
 import Routes from "./components/route/Route.component";
 
+import './App.scss'
+
 const App = () => {
   return (
       <Provider store={store}>

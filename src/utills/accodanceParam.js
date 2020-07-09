@@ -1,14 +1,14 @@
 export const sortedParams = {
-    'Таксопарк': 'taxName',
-    'Заказ': 'order',
-    'Время': 'time',
+    'Таксопарк': 'taximeter',
+    'Заказ': 'order_number',
+    'Время': 'order_time',
     'Статус': 'status',
-    'Телефон': 'number',
-    'Подача': 'filed',
-    'Куда ехать': 'where',
-    'Принят': 'apply',
-    'На месте': 'onPlace',
-    'Водитель': 'driver'
+    'Телефон': 'phone',
+    'Подача': 'from_address',
+    'Куда ехать': 'to_address',
+    'Принят': 'acceptence_time',
+    'На месте': 'in_place_time',
+    'Водитель': 'driver_name'
 }
 
 export const accodanceParam = param => {

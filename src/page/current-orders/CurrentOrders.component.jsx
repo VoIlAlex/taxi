@@ -12,10 +12,11 @@ import LottieLoader from "../../components/lottie-loader/LootieLoader.component"
 import './current-orders.style.scss'
 
 const CurrentOrders = ({orders, fetchPendingOrdersAsync}) => {
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false) //TODO change to true
     useEffect(() => {
         fetchPendingOrdersAsync(()=>setIsLoading(false))
     }, [fetchPendingOrdersAsync])
+
 
     return (
         <>
@@ -39,7 +40,7 @@ const CurrentOrders = ({orders, fetchPendingOrdersAsync}) => {
 }
 
 const mapStateToProps = state => ({
-    orders: state.order.pendingOrders
+    orders: state.order.orderForTable
 })
 
 const mapDispatchToProps = dispatch => ({

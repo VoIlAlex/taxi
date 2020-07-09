@@ -1,4 +1,6 @@
 import actionTypes from "./order.types";
+import {driverChange} from "../../utills/driverChange";
+import {sortTable} from "../../utills/tableSort";
 
 const {
     SET_SHOW_SUCCESS,
@@ -8,12 +10,16 @@ const {
     DELETE_PENDING_ORDERS,
     SUCCESS_FETCH_PENDING_ORDERS,
     FAILURE_FETCH_PENDING_ORDERS,
-    FAILURE_DELETE_PENDING_ORDERS
+    FAILURE_DELETE_PENDING_ORDERS,
+    DRIVER_CHANGE_SUCCESS,
+    DRIVER_CHANGE_FAILURE,
+    FILTER_TABLE_SUCCESS
 } = actionTypes
 
 const initialState = {
     orderCredentials: {},
     pendingOrders: [],
+    orderForTable: [],
     showSuccess: false,
     isLoading: false,
     error: null
@@ -21,6 +27,7 @@ const initialState = {
 
 const orderReducer = (state = initialState, action) => {
     switch (action.type) {
+        case DRIVER_CHANGE_FAILURE:
         case FAILURE_DELETE_PENDING_ORDERS:
             return {
                 ...state,
@@ -36,12 +43,14 @@ const orderReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoadingPending: false,
-                pendingOrders: action.payload
+                pendingOrders: action.payload,
+                orderForTable: action.payload
             }
         case DELETE_PENDING_ORDERS:
             return {
                 ...state,
-                pendingOrders: action.payload
+                pendingOrders: [...state.pendingOrders.filter(order => order.id !== action.payload)],
+                orderForTable: [...state.orderForTable.filter(order => order.id !== action.payload)]
             }
         case SET_SHOW_SUCCESS:
             return {
@@ -67,6 +76,17 @@ const orderReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 error: action.payload
+            }
+        case DRIVER_CHANGE_SUCCESS:
+            return {
+                ...state,
+                pendingOrders: [...driverChange(state.pendingOrders, action.payload)],
+                orderForTable: [...driverChange(state.orderForTable, action.payload)]
+            }
+        case FILTER_TABLE_SUCCESS:
+            return {
+                ...state,
+                orderForTable: [...sortTable(state.orderForTable, action.payload.filterParam, action.payload.direction)]
             }
         default:
             return state

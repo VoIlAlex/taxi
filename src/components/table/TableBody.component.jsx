@@ -1,18 +1,23 @@
 import React, {useState} from 'react'
 import {connect} from "react-redux";
 
-import {startDeleteOrderAsync} from "../../redux/order/order.actions";
+import {startDeleteOrderAsync, startChangeDriverAsync} from "../../redux/order/order.actions";
 
 const TableBody = ({
                        taximeter, order_number, order_date, order_time, status, arrival_time, phone,
                        from_address, to_address, acceptance_time, in_place_time, driver_name, id,
-                       startDeleteOrderAsync
+                       startDeleteOrderAsync, startChangeDriverAsync
                    }) => {
     const [showRemoveOrder, setShowRemoveOrder] = useState(false)
 
-    const deleteHandler = (id) => {
+    const deleteHandler = id => {
         startDeleteOrderAsync(id);
-        setShowRemoveOrder(!showRemoveOrder)
+        setShowRemoveOrder(false)
+    }
+
+    const changeDriverHandler = id => {
+        startChangeDriverAsync(id)
+        setShowRemoveOrder(false)
     }
 
     return (
@@ -38,9 +43,13 @@ const TableBody = ({
             </td>
             {
                 showRemoveOrder &&
-                    <div className="delete-block" onClick={() => deleteHandler(id)}>
-                        <small>Отменить</small>
+                    <div className="delete-block">
+                        <small onClick={() => deleteHandler(id)}>Отменить</small>
+                        <small onClick={()=> changeDriverHandler(id)}>След. водитель</small>
                     </div>
+            }
+            {
+                showRemoveOrder? <div className="modal-overlay" onClick={()=> setShowRemoveOrder(false)}/>: ''
             }
         </tr>
 
@@ -48,7 +57,8 @@ const TableBody = ({
 }
 
 const mapDispatchToProps = dispatch => ({
-    startDeleteOrderAsync: id => dispatch(startDeleteOrderAsync(id))
+    startDeleteOrderAsync: id => dispatch(startDeleteOrderAsync(id)),
+    startChangeDriverAsync: id => dispatch(startChangeDriverAsync(id))
 })
 
 

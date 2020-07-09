@@ -82,25 +82,8 @@ table {
   }
 
   .delete-block {
-    position: absolute;
-    width: 140px;
-    height: 40px;
     font-size: 16px;
-    color: black;
-    background: white;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     right: 30px;
-    cursor: pointer;
-    transition: color, background-color 0.15s ease-in;
-
-    &:hover {
-      background: #C00000;
-      color: white;
-    }
   }
 
   .filter-icon{

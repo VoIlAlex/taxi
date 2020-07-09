@@ -16,6 +16,7 @@ const ActiveOrders = ({pendingOrders, fetchPendingOrdersAsync}) => {
         await fetchPendingOrdersAsync()
     }, 7000)
 
+
     return (
         <div className={'orders'}>
             {

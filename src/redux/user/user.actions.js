@@ -1,6 +1,10 @@
 import axios from 'axios'
 import actionTypes from "./user.types";
 
+
+//@Route    POST https://kandk.team/api/login/
+//@Access   Public
+//@Desc     Login user
 export const signInStart = () => ({
     type: actionTypes.SIGN_IN_START
 })
@@ -18,7 +22,7 @@ export const signInSuccess = user => ({
 export const signInStartAsync = (userCredentials, cb) => {
     return async dispatch => {
         dispatch(signInStart())
-        await axios('https://kandk.team/api/login/', {
+        await axios('http://178.159.45.188/api/login/', {
             data: userCredentials,
             method: "post",
             withCredentials: true
