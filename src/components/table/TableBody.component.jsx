@@ -49,7 +49,7 @@ const TableBody = ({
                     </div>
             }
             {
-                showRemoveOrder? <div className="modal-overlay" onClick={()=> setShowRemoveOrder(false)}/>: ''
+                showRemoveOrder && <div className="modal-overlay" onClick={()=> setShowRemoveOrder(false)}/>
             }
         </tr>
 

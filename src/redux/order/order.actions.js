@@ -12,7 +12,6 @@ const {
     FAILURE_FETCH_PENDING_ORDERS,
     FAILURE_DELETE_PENDING_ORDERS,
     DRIVER_CHANGE_FAILURE,
-    DRIVER_CHANGE_SUCCESS,
     FILTER_TABLE_SUCCESS
 } = actionTypes
 
@@ -22,7 +21,7 @@ export const setShowSuccess = () => ({
 })
 
 
-//@Route    POST https://178.159.45.188:5555/api/orders/
+//@Route    POST https://178.159.45.188/api/orders/
 //@Access   Cookie required
 //@Desc     Post new order
 const startOrderFetch = () => ({
@@ -42,7 +41,7 @@ const failureOrderFetch = msg => ({
 export const startOrderFetchingAsync = orderCredentials => {
     return async dispatch => {
         dispatch(startOrderFetch())
-        await axios('http://178.159.45.188:5555/api/orders/', {
+        await axios('http://178.159.45.188/api/orders/', {
             data: {...orderCredentials},
             method: "post",
             withCredentials: true
@@ -53,7 +52,7 @@ export const startOrderFetchingAsync = orderCredentials => {
 }
 
 
-//@Route    GET https://178.159.45.188:5555/api/orders/
+//@Route    GET https://178.159.45.188/api/orders/
 //@Access   Cookie required
 //@Desc     Fetch orders
 const successFetchPendingOrders = pendingOrders => ({
@@ -68,7 +67,7 @@ const failureFetchPendingOrders = err => ({
 
 export const fetchPendingOrdersAsync = (cb = () => cb()) => {
     return async dispatch => {
-        await axios('http://178.159.45.188:5555/api/orders/', {
+        await axios('http://178.159.45.188/api/orders/', {
             method: "get",
             withCredentials: true
         })
@@ -79,7 +78,7 @@ export const fetchPendingOrdersAsync = (cb = () => cb()) => {
 }
 
 
-//@Route    DELETE https://178.159.45.188:5555/api/orders/
+//@Route    DELETE https://178.159.45.188/api/orders/
 //@Access   Cookie required
 //@Desc     Delete order by id
 const deletePendingOrder = id => ({
@@ -93,7 +92,7 @@ const failureDeleteOrder = err => ({
 })
 
 export const startDeleteOrderAsync = (id, cb) => async dispatch => {
-    await axios('http://178.159.45.188:5555/api/orders/', {
+    await axios('http://178.159.45.188/api/orders/', {
         method: "delete",
         withCredentials: true
     })
@@ -102,7 +101,7 @@ export const startDeleteOrderAsync = (id, cb) => async dispatch => {
         .catch(err => dispatch(failureDeleteOrder(err)))
 }
 
-//@Route    GET https://178.159.45.188:5555/api/drivers/
+//@Route    DELETE https://178.159.45.188/api/drivers/assign
 //@Access   Cookie required
 //@Desc     Change driver by order id
 const driverChangeFailure = err => ({
@@ -110,20 +109,15 @@ const driverChangeFailure = err => ({
     payload: err
 })
 
-const driverChangeSuccess = ( drivers, id ) => ({
-    type: DRIVER_CHANGE_SUCCESS,
-    payload: { drivers, id }
-})
-
 export const startChangeDriverAsync = id => async dispatch => {
-    await axios('http://178.159.45.188:5555/api/drivers/', {
-        method: 'post',
+    await axios('http://178.159.45.188/api/orders/assign', {
+        method: 'delete',
         withCredentials: true,
         data: {
             "id": id
         }
     })
-        .then(res => dispatch(driverChangeSuccess(res.data, id)))
+        .then(_ => dispatch(fetchPendingOrdersAsync()))
         .catch(err => dispatch(driverChangeFailure(err)))
 }
 
