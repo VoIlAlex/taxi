@@ -12,12 +12,12 @@ const Routes = ({currentUser}) => {
             ?
             <>
                 <Switch>
-                    <Route exact path={'/'} component={MainForm}/>
-                    <Route path={'/currentorders'} component={CurrentOrders}/>
+                    <Route exact path={'/app/'} component={MainForm}/>
+                    <Route path={'/app/currentorders'} component={CurrentOrders}/>
                 </Switch>
             </>
             :
-            <Route path={'/'} component={SignInPage}/>
+            <Route path={'/app/'} component={SignInPage}/>
     )
 }
 
