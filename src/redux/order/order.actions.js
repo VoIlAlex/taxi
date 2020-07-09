@@ -42,7 +42,7 @@ const failureOrderFetch = msg => ({
 export const startOrderFetchingAsync = orderCredentials => {
     return async dispatch => {
         dispatch(startOrderFetch())
-        await axios('http://178.159.45.188/api/orders/', {
+        await axios('http://178.159.45.188:5555/api/orders/', {
             data: {...orderCredentials},
             method: "post",
             withCredentials: true
@@ -69,7 +69,7 @@ const failureFetchPendingOrders = err => ({
 
 export const fetchPendingOrdersAsync = (cb = () => cb()) => {
     return async dispatch => {
-        await axios('http://178.159.45.188/api/orders/', {
+        await axios('http://178.159.45.188:5555/api/orders/', {
             method: "get",
             withCredentials: true
         })
@@ -94,7 +94,7 @@ const failureDeleteOrder = err => ({
 })
 
 export const startDeleteOrderAsync = (id, cb) => async dispatch => {
-    await axios('http://178.159.45.188/api/orders/', {
+    await axios('http://178.159.45.188:5555/api/orders/', {
         method: "delete",
         withCredentials: true
     })
@@ -117,7 +117,7 @@ const driverChangeSuccess = (drivers, id) => ({
 })
 
 export const startChangeDriverAsync = id => async dispatch => {
-    await axios('http://178.159.45.188/api/drivers/', {
+    await axios('http://178.159.45.188:5555/api/drivers/', {
         method: 'post',
         withCredentials: true,
         data: {
