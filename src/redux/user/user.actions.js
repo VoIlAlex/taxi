@@ -22,7 +22,7 @@ export const signInSuccess = user => ({
 export const signInStartAsync = (userCredentials, cb) => {
     return async dispatch => {
         dispatch(signInStart())
-        await axios('http://178.159.45.188:5555/api/login/', {
+        await axios('http://178.159.45.188/api/login/', {
             data: userCredentials,
             method: "post",
             withCredentials: true
