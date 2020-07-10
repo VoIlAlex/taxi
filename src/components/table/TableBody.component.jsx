@@ -19,7 +19,7 @@ const TableBody = ({
         startChangeDriverAsync(id)
         setShowRemoveOrder(false)
     }
-    status='Driving'
+
     return (
         <tr className={`${status==='Driving'? 'left':status==='Waiting'?'wait':''}`}>
             <td>{taximeter? taximeter:'Не определен'}</td>
