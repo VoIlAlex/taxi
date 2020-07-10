@@ -19,7 +19,7 @@ const TableBody = ({
         startChangeDriverAsync(id)
         setShowRemoveOrder(false)
     }
-
+    status='Driving'
     return (
         <tr className={`${status==='Driving'? 'left':status==='Waiting'?'wait':''}`}>
             <td>{taximeter? taximeter:'Не определен'}</td>
@@ -33,7 +33,7 @@ const TableBody = ({
             <td>{to_address}</td>
             <td>{acceptance_time}</td>
             <td>{in_place_time}</td>
-            <td>{driver_name}</td>
+            <td>{driver_name? driver_name:'Неопределен'}</td>
             <td>
                 <div className="dots" onClick={() => setShowRemoveOrder(!showRemoveOrder)}>
                     <div/>

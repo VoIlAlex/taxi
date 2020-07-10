@@ -24,8 +24,13 @@
     height: 50%;
     transition: color, background-color 0.2s ease-in;
 
-    &:hover {
+    &:first-of-type:hover {
       background: #C00000;
+      color: white;
+    }
+
+    &:nth-of-type(2):hover {
+      background: #FFDE40;
       color: white;
     }
   }
