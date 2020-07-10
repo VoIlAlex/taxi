@@ -21,7 +21,7 @@ const TableBody = ({
     }
 
     return (
-        <tr className={`${status==='created'? 'left':status==='waiting'?'wait':''}`}>
+        <tr className={`${status==='Driving'? 'left':status==='Waiting'?'wait':''}`}>
             <td>{taximeter? taximeter:'Не определен'}</td>
             <td>{order_number}</td>
             <td>{order_date}</td>
