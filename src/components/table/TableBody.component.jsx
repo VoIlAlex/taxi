@@ -52,7 +52,6 @@ const TableBody = ({
                 showRemoveOrder && <div className="modal-overlay" onClick={()=> setShowRemoveOrder(false)}/>
             }
         </tr>
-
     )
 }
 

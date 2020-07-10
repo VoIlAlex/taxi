@@ -16,10 +16,6 @@
   overflow: hidden;
   z-index: 999;
 
-  @media screen and (max-width: 600px) {
-    bottom: 30px;
-  }
-
   small {
     display: flex;
     align-items: center;
