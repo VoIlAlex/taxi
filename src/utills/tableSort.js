@@ -1,9 +1,6 @@
 import {accodanceParam} from "./accodanceParam";
 
 export const sortTable = (orders, sortedParam, direction) => {
-    console.log(orders)
-    console.log(sortedParam)
-    console.log(direction)
     if (sortedParam === 'Дата') {
         return orders.sort((a, b) => {
             let dateA = new Date(a.order_date).toISOString(), dateB = new Date(b.order_date).toISOString()

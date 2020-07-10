@@ -2,7 +2,7 @@ import axios from 'axios'
 import actionTypes from "./user.types";
 
 
-//@Route    POST https://kandk.team/api/login/
+//@Route    POST https://178.159.45.188:5555/api/login/
 //@Access   Public
 //@Desc     Login user
 export const signInStart = () => ({

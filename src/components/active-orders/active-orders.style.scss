@@ -55,6 +55,11 @@
       justify-content: center;
       overflow: hidden;
 
+      .delete-block{
+        @media screen and (max-width: 600px) {
+          bottom: 30px;
+        }
+      }
       @media screen and (max-width: 600px) {
         margin-top: 0;
       }

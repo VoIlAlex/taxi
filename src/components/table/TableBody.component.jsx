@@ -21,12 +21,12 @@ const TableBody = ({
     }
 
     return (
-        <tr className={`${status==='Created'? 'left':status==='Waiting'?'wait':''}`}>
+        <tr className={`${status==='Driving'? 'left':status==='Waiting'?'wait':''}`}>
             <td>{taximeter? taximeter:'Не определен'}</td>
             <td>{order_number}</td>
             <td>{order_date}</td>
             <td>{order_time}</td>
-            <td>{status}</td>
+            <td>{status === 'Waiting' ? 'Ожидание' : status === 'Driving' ? 'Выехал' : 'Создан'}</td>
             <td>{arrival_time}</td>
             <td>{phone}</td>
             <td>{from_address}</td>
@@ -49,10 +49,9 @@ const TableBody = ({
                     </div>
             }
             {
-                showRemoveOrder? <div className="modal-overlay" onClick={()=> setShowRemoveOrder(false)}/>: ''
+                showRemoveOrder && <div className="modal-overlay" onClick={()=> setShowRemoveOrder(false)}/>
             }
         </tr>
-
     )
 }
 

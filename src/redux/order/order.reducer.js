@@ -1,5 +1,4 @@
 import actionTypes from "./order.types";
-import {driverChange} from "../../utills/driverChange";
 import {sortTable} from "../../utills/tableSort";
 
 const {
@@ -11,7 +10,6 @@ const {
     SUCCESS_FETCH_PENDING_ORDERS,
     FAILURE_FETCH_PENDING_ORDERS,
     FAILURE_DELETE_PENDING_ORDERS,
-    DRIVER_CHANGE_SUCCESS,
     DRIVER_CHANGE_FAILURE,
     FILTER_TABLE_SUCCESS
 } = actionTypes
@@ -76,12 +74,6 @@ const orderReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 error: action.payload
-            }
-        case DRIVER_CHANGE_SUCCESS:
-            return {
-                ...state,
-                pendingOrders: [...driverChange(state.pendingOrders, action.payload)],
-                orderForTable: [...driverChange(state.orderForTable, action.payload)]
             }
         case FILTER_TABLE_SUCCESS:
             return {
