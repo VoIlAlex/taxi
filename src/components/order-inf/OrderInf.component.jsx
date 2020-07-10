@@ -20,7 +20,7 @@ const OrderInf = ({
         startChangeDriverAsync(id)
         setShowRemoveOrder(false)
     }
-
+    console.log(status)
     return (
         <div className="order">
                 <div className="order-inf">
