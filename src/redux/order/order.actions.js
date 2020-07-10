@@ -94,7 +94,10 @@ const failureDeleteOrder = err => ({
 export const startDeleteOrderAsync = (id, cb) => async dispatch => {
     await axios('http://178.159.45.188/api/orders/', {
         method: "delete",
-        withCredentials: true
+        withCredentials: true,
+        data:{
+            'id':id
+        }
     })
         .then(res => dispatch(deletePendingOrder(id)))
         .then(_ => cb())
