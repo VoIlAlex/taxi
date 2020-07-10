@@ -26,7 +26,7 @@ const TableBody = ({
             <td>{order_number}</td>
             <td>{order_date}</td>
             <td>{order_time}</td>
-            <td>{status}</td>
+            <td>{status === 'Waiting' ? 'Ожидание' : status === 'Driving' ? 'Выехал' : 'Создан'}</td>
             <td>{arrival_time}</td>
             <td>{phone}</td>
             <td>{from_address}</td>
