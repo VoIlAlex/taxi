@@ -10,18 +10,18 @@ const columnName = [
     'Телефон', 'Подача', 'Куда ехать', 'Принят', 'На месте', 'Водитель'
 ]
 
-const TableHead = ({orders, filterTable}) => {
+const TableHead = ({filterTable}) => {
     const [direction, setDirection] = useState({
-        taxName: true,
-        order: true,
-        time: true,
+        taximeter: true,
+        order_number: true,
+        order_time: true,
         status: true,
-        number: true,
-        filed: true,
-        where: true,
-        apply: true,
-        onPlace: true,
-        driver: true
+        phone: true,
+        from_address: true,
+        to_address: true,
+        acceptence_time: true,
+        in_place_time: true,
+        driver_name: true
     })
 
     const filterHandler = param => {

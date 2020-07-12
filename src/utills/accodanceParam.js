@@ -6,7 +6,7 @@ export const sortedParams = {
     'Телефон': 'phone',
     'Подача': 'from_address',
     'Куда ехать': 'to_address',
-    'Принят': 'acceptence_time',
+    'Принят': 'acceptance_time',
     'На месте': 'in_place_time',
     'Водитель': 'driver_name'
 }
