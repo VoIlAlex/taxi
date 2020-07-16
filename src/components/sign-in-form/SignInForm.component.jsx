@@ -11,6 +11,8 @@ import {signInStartAsync} from '../../redux/user/user.actions'
 
 import './sign-in-form.style.scss'
 
+import { routes } from '../../constants/routes';
+
 const SignInForm = ({isLoading, error, history, signInStartAsync}) => {
 
     const [login, setLogin] = useState('')
@@ -21,7 +23,7 @@ const SignInForm = ({isLoading, error, history, signInStartAsync}) => {
         signInStartAsync({
             login,
             password
-        }, () => history.push('/'))
+        }, () => history.push(routes.main))
     }
 
     return (

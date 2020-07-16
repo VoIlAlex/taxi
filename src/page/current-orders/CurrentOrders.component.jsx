@@ -11,6 +11,7 @@ import TableBody from "../../components/table/TableBody.component";
 import LottieLoader from "../../components/lottie-loader/LootieLoader.component";
 
 import './current-orders.style.scss'
+import { routes } from '../../constants/routes'
 
 const CurrentOrders = ({orders, fetchPendingOrdersAsync}) => {
     const [isLoading, setIsLoading] = useState(true)
@@ -27,7 +28,7 @@ const CurrentOrders = ({orders, fetchPendingOrdersAsync}) => {
             <Links/>
             {
                 isLoading ? <LottieLoader/> :
-                    !orders.length ? <h2>У вас пока нет заказов. <Link to={'/'}>Создать?</Link></h2> :
+                    !orders.length ? <h2>У вас пока нет заказов. <Link to={routes.main}>Создать?</Link></h2> :
                         <div className="table">
                             <table>
                                 <TableHead />

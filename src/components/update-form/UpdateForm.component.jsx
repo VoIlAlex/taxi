@@ -9,6 +9,7 @@ import CustomButton from "../custom-button/CustomButton.component";
 
 import {setShowSuccess} from "../../redux/taximeters/taximeters.actions";
 import {startUpdateAsync} from "../../redux/taximeters/taximeters.actions";
+import { routes } from '../../constants/routes';
 
 const UpdateForm = ({taximeters, history, match, showSuccess, startUpdateAsync}) => {
     let taximeter = taximeters.filter(tax => match.params.id === tax.id)[0]
@@ -29,7 +30,7 @@ const UpdateForm = ({taximeters, history, match, showSuccess, startUpdateAsync})
         e.preventDefault()
         startUpdateAsync(
             {...taximeterCredentials, id: match.params.id},
-            showSuccess(history.push('/add_taxipark'))
+            showSuccess(history.push(routes.addTaxipark))
             )
     }
 
