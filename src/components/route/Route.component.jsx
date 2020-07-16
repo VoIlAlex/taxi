@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Route, Switch} from 'react-router-dom'
+import {Route, Switch, Redirect} from 'react-router-dom'
 
 import SignInPage from "../../page/sign-in-page/SignInPage.component";
 import MainForm from "../../page/main-form/MainForm.component";
@@ -26,6 +26,9 @@ const Routes = ({currentUser}) => {
                     <Route path={routes.codeApply} component={SmsCodeForm}/>
                     <Route path={routes.updateTaximeter} component={UpdateTaxiparkForm}/>
                     <Route path={routes.resetPassword} component={ResetPasswordPage}/>
+                    <Route exact path="/">
+                        <Redirect to={routes.main} />
+                    </Route>
                 </Switch>
             </>
             :
@@ -36,6 +39,9 @@ const Routes = ({currentUser}) => {
                 <Route path={routes.codeApply} component={SmsCodeForm}/>
                 <Route path={routes.updateTaximeter} component={UpdateTaxiparkForm}/>
                 <Route path={routes.resetPassword} component={ResetPasswordPage}/>
+                <Route exact path="/">
+                    <Redirect to={routes.main} />
+                </Route>
             </Switch>
 
     )
