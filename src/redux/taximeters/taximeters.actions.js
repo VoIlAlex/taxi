@@ -30,7 +30,7 @@ const fetchTaximetersFailure = err => ({
 })
 
 export const startFetchTaximetersAsync = (cb = () => cb()) => async dispatch => {
-    await axios('https://178.159.45.188/api/taximeters', {
+    await axios('http://178.159.45.188/api/taximeters', {
         method: "get",
         withCredentials: true
     })
@@ -51,7 +51,7 @@ const postTaximeterFailure = err => ({
 
 
 export const startPostTaximeter = (taximeter, cb = () => cb()) => async dispatch => {
-    await axios('https://178.159.45.188/api/taximeters', {
+    await axios('http://178.159.45.188/api/taximeters', {
         method: "post",
         withCredentials: true,
         data: {...taximeter}
@@ -71,7 +71,7 @@ const updateTaximeterFailure = err => ({
 })
 
 export const startUpdateAsync = (taximeter, cb = () => cb()) => async dispatch => {
-    await axios('https://178.159.45.188/api/taximeters', {
+    await axios('http://178.159.45.188/api/taximeters', {
         method: "put",
         withCredentials: true,
         data: {...taximeter}
@@ -92,7 +92,7 @@ const deleteTaximeterFailure = err => ({
 })
 
 export const startDeleteTaximeterAsync = (id, cb = () => cb()) => async dispatch => {
-    await axios('https://178.159.45.188/api/taximeters', {
+    await axios('http://178.159.45.188/api/taximeters', {
         method: "delete",
         withCredentials: true,
         data: {id}
@@ -114,7 +114,7 @@ const getVerificationFailure = err => ({
 })
 
 export const getVerification = id => async dispatch => {
-    await axios('https://178.159.45.188/api/taximeters/verification', {
+    await axios('http://178.159.45.188/api/taximeters/verification', {
         method: 'get',
         withExtraArgument: true,
         data: {id}
@@ -124,7 +124,7 @@ export const getVerification = id => async dispatch => {
 }
 
 export const postVerificationCode = (session_id, code, cb) => async dispatch => {
-    await axios('https://178.159.45.188/api/taximeters/verification', {
+    await axios('http://178.159.45.188/api/taximeters/verification', {
         method: 'post',
         withCredentials: true,
         data: {
