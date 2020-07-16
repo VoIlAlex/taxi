@@ -3,13 +3,14 @@ import {connect} from 'react-redux'
 import successAnimation from './success-animation'
 import Lottie from 'react-lottie'
 
-import {setShowSuccess} from '../../redux/order/order.actions'
+import {setShowSuccess as setShowSuccessOrder} from '../../redux/order/order.actions'
+import {setShowSuccess as setShowSuccessTaximeters} from "../../redux/taximeters/taximeters.actions";
 
 import CustomButton from "../custom-button/CustomButton.component";
 
 import './success-order.style.scss'
 
-const SuccessOrder = ({setShowSuccess}) => {
+const SuccessOrder = ({buttonValue, contentValue, admin, setShowSuccessOrder, setShowSuccessTaximeters}) => {
 
     const defaultOptions = {
         loop: false,
@@ -20,21 +21,30 @@ const SuccessOrder = ({setShowSuccess}) => {
         }
     };
 
+    const successHandler = () => {
+        if(admin){
+            setShowSuccessTaximeters()
+        } else {
+            setShowSuccessOrder()
+        }
+    }
+
     return (
         <>
             <div className="success">
                 <div className="success-logo">
                     <Lottie options={defaultOptions} height={150} width={300}/>
                 </div>
-                <p>Заказ успешно создан</p>
-                <CustomButton onClick={() => setShowSuccess()}>Создать новый</CustomButton>
+                <p>{contentValue}</p>
+                <CustomButton onClick={() => successHandler()}>{buttonValue}</CustomButton>
             </div>
         </>
     )
 }
 
 const mapDispatchToProps = dispatch => ({
-    setShowSuccess: () => dispatch(setShowSuccess())
+    setShowSuccessOrder: () => dispatch(setShowSuccessOrder()),
+    setShowSuccessTaximeters: () => dispatch(setShowSuccessTaximeters())
 })
 
 export default connect(null, mapDispatchToProps)(SuccessOrder)

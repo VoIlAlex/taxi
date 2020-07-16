@@ -50,14 +50,14 @@
       line-height: 16px;
       color: #0085FF;
       cursor: pointer;
-      margin: 13px 145px 0 0;
+      margin: 13px 80px 0 0;
 
       &:hover {
         color: #000;
       }
 
       @media screen and (max-width: 600px) {
-        margin: 20px 0 0 10px;
+        margin: 20px 0 0 0;
       }
     }
   }

@@ -10,6 +10,7 @@ const OrderInf = ({
                       taximeter, acceptance_time, status, id, startDeleteOrderAsync, startChangeDriverAsync
                   }) => {
     const [showRemoveOrder, setShowRemoveOrder] = useState(false)
+
     const deleteHandler = id => {
         startDeleteOrderAsync(id);
         setShowRemoveOrder(false)

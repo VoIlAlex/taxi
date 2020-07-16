@@ -16,12 +16,11 @@ const MainForm = ({showSuccess}) => {
                 {
                     showSuccess
                         ?
-                        <SuccessOrder/>
+                        <SuccessOrder buttonValue={'Создать новый'} contentValue={'Заказ успешно создан'}/>
                         :
                         <OrderForm/>
                 }
             </div>
-
             <ActiveOrders/>
         </>
     )
