@@ -12,6 +12,7 @@ import {setShowSuccess} from "../../redux/taximeters/taximeters.actions";
 import {getVerification, postVerificationCode} from "../../redux/taximeters/taximeters.actions";
 
 import './sms-code-form.style.scss'
+import { routes } from '../../constants/routes';
 
 const SmsCodeForm = ({showSuccess, session_id, getVerification, postVerificationCode, match, history}) => {
     let id = match.params.id
@@ -25,7 +26,7 @@ const SmsCodeForm = ({showSuccess, session_id, getVerification, postVerification
     const submitHandler = e => {
         e.preventDefault()
         setIsLoading(true)
-        postVerificationCode(session_id, code, () => history.push('/add_taxipark'))
+        postVerificationCode(session_id, code, () => history.push(routes.addTaxipark))
     }
 
     return (

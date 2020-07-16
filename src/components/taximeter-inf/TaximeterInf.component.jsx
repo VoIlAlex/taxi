@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import {startDeleteTaximeterAsync} from "../../redux/taximeters/taximeters.actions";
 
 import './taximeter-inf.style.scss'
+import { routesWithoutParams } from '../../constants/routes';
 
 const TaximeterInf = ({login, title, in_verification, id, error, startDeleteTaximeterAsync}) => {
 
@@ -31,8 +32,8 @@ const TaximeterInf = ({login, title, in_verification, id, error, startDeleteTaxi
             {
                 showRemoveOrder &&
                 <div className="delete-block">
-                    <small><Link to={`/update_taximeter/${id}`}>Обновить данные</Link></small>
-                    <small><Link to={`/code_apply/${id}`}>Запросить СМС</Link></small>
+                    <small><Link to={`${routesWithoutParams.updateTaximeter}/${id}`}>Обновить данные</Link></small>
+                    <small><Link to={`${routesWithoutParams.codeApply}/${id}`}>Запросить СМС</Link></small>
                     <small onClick={() => startDeleteTaximeterAsync(id)}>Удалить</small>
                 </div>
             }

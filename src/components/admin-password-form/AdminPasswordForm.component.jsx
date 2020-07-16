@@ -10,6 +10,7 @@ import CustomButton from "../custom-button/CustomButton.component";
 import {signInStartAsync} from "../../redux/user/user.actions";
 
 import './admin-password-form.scss'
+import { routes } from '../../constants/routes';
 
 const AdminPasswordForm =({isLoading, error, signInStartAsync, history}) => {
 
@@ -17,7 +18,7 @@ const AdminPasswordForm =({isLoading, error, signInStartAsync, history}) => {
 
     const passwordHandler = e => {
         e.preventDefault()
-        signInStartAsync({login:'admin', password}, () => history.push('/add_taxipark'))
+        signInStartAsync({login:'admin', password}, () => history.push(routes.addTaxipark))
     }
     return (
         <form className={'sign-form'} onSubmit={(e) => passwordHandler(e)}>
