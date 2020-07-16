@@ -42,6 +42,7 @@ const ResetPasswordForm = ({startResetPasswordAsync}) => {
             />
 
             <FormInput
+                type={'password'}
                 label={'Старый пароль'}
                 placeholder={'Введите старый пароль'}
                 name={'old_password'}
