@@ -23,6 +23,7 @@ const AdminPasswordForm =({isLoading, error, signInStartAsync, history}) => {
         <form className={'sign-form'} onSubmit={(e) => passwordHandler(e)}>
             {error ?
                 <FormInput
+                    type={'password'}
                     label={'Пароль АДМИНА'}
                     placeholder={'Введите админский пароль'}
                     onChange={({target}) => setPassword(target.value)}
@@ -31,6 +32,7 @@ const AdminPasswordForm =({isLoading, error, signInStartAsync, history}) => {
                     required
                 /> :
                 <FormInput
+                    type={'password'}
                     label={'Пароль АДМИНА'}
                     placeholder={'Введите админский пароль'}
                     onChange={({target}) => setPassword(target.value)}
