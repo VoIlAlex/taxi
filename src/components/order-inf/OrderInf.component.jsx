@@ -7,10 +7,10 @@ import {ReactComponent as Arrow} from '../../asserts/arrow.svg'
 
 const OrderInf = ({
                       order_date, from_address, order_number, arrival_time, to_address, driver_name,
-                      taximeter, acceptance_time, status, id, call_sign, startDeleteOrderAsync,
-                      startChangeDriverAsync
+                      taximeter, acceptance_time, status, id, startDeleteOrderAsync, startChangeDriverAsync
                   }) => {
     const [showRemoveOrder, setShowRemoveOrder] = useState(false)
+
     const deleteHandler = id => {
         startDeleteOrderAsync(id);
         setShowRemoveOrder(false)

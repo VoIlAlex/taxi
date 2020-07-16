@@ -27,10 +27,27 @@ export const signInStartAsync = (userCredentials, cb) => {
             method: "post",
             withCredentials: true
         })
-            .then(res => {
-                dispatch(signInSuccess({...userCredentials}))
-                cb()
-            })
+            .then(res => dispatch(signInSuccess({...userCredentials})))
+            .then(_ => cb())
             .catch(err => dispatch(signInFailure(err.message)))
     }
+}
+
+
+const resetPasswordSuccess = () => ({
+    type:actionTypes.RESET_PASSWORD_SUCCESS
+})
+
+const resetPasswordFailure = err => ({
+    type: actionTypes.RESET_PASSWORD_FAILURE
+})
+
+export const startResetPasswordAsync = (password, cb) => async dispatch => {
+    await axios('http://178.159.45.188/api/login/reset', {
+        method: 'post',
+        data: {...password}
+    })
+        .then( res => dispatch(resetPasswordSuccess()))
+        .then(_ => cb())
+        .catch( err => dispatch(resetPasswordFailure(err)))
 }

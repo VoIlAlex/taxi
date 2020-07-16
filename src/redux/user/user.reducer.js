@@ -21,11 +21,16 @@ const userReducer = (state = initialState, action) => {
                 isLoading: false,
                 error: null
             }
+        case actionTypes.RESET_PASSWORD_FAILURE:
         case actionTypes.SIGN_IN_FAILURE:
             return {
                 ...state,
                 isLoading: false,
                 error: action.payload
+            }
+        case actionTypes.RESET_PASSWORD_SUCCESS:
+            return {
+                ...state
             }
         default:
             return state

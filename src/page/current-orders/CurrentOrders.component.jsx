@@ -31,7 +31,7 @@ const CurrentOrders = ({orders, fetchPendingOrdersAsync}) => {
                     !orders.length ? <h2>У вас пока нет заказов. <Link to={routes.main}>Создать?</Link></h2> :
                         <div className="table">
                             <table>
-                                <TableHead orders={orders}/>
+                                <TableHead />
                                 <tbody>
                                 {
                                     orders.map((order, i) => (<TableBody key={i} {...order}/>))

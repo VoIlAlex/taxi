@@ -1,0 +1,81 @@
+.taximeter {
+  width: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .information {
+    color: black;
+
+    p {
+      font-size: 18px;
+    }
+
+    p:nth-of-type(2) {
+      color: #3F3F3F;
+      font-size: 14px;
+    }
+  }
+
+  .options-block {
+    width: 40%;
+    color: #3F3F3F;
+    font-size: 16px;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+
+    span {
+      width: 70%;
+      text-align: right;
+    }
+
+    .dots {
+      margin-top: 3px;
+      margin-left: 15px;
+      width: 10%;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      cursor: pointer;
+
+      div {
+        width: 4px;
+        height: 4px;
+        background: #3F3F3F;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  .delete-block {
+    height: 80px;
+    right: 110px;
+
+    @media screen and (max-width: 600px) {
+      right: 80px;
+      top: 40px;
+    }
+
+    a{
+      text-decoration: none;
+      color:black;
+    }
+
+    small:nth-of-type(1):hover {
+      background: #FFDE40;
+      color: black;
+    }
+
+    small:nth-of-type(2):hover {
+      background: #FFDE40;
+      color: black;
+    }
+
+    small:nth-of-type(3):hover {
+      background: #C00000;
+      color: white;
+    }
+
+  }
+}

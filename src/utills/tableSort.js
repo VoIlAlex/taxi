@@ -10,7 +10,7 @@ export const sortTable = (orders, sortedParam, direction) => {
         })
     } else if (sortedParam === '[ - ]') {
         return orders.sort((a, b) => {
-            let paramA = +/\d+/.exec(a.waiting), paramB = +/\d+/.exec(b.waiting)
+            let paramA = +/\d+/.exec(a.arrival_time), paramB = +/\d+/.exec(b.arrival_time)
             return direction ?
                 (paramA < paramB) ? -1 : ((paramA > paramB) ? 1 : 0) :
                 (paramA > paramB) ? -1 : ((paramA < paramB) ? 1 : 0)

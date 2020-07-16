@@ -1,20 +1,15 @@
-.main-form {
-  margin: 7vh 0 5vh 0;
+.admin-sign-page{
+  margin: 15vh 0 0 0;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 640px;
-  min-height: 497px;
+  min-height: 300px;
   background: #fff;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
-  z-index: 999;
 
   @media screen and (max-width: 600px) {
     width: 100%;
-    min-height: 418px;
-    overflow: hidden;
   }
-
 }
